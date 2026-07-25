@@ -46,7 +46,7 @@ body::before {
       transparent 67px 128px
     );
   pointer-events: none;
-  animation: wave-motion 18s ease-in-out infinite alternate;
+  animation: wave-motion 10s ease-in-out infinite alternate;
   will-change: transform;
 }
 
@@ -60,7 +60,7 @@ body::after {
     radial-gradient(circle, rgba(64, 105, 154, 0.26) 0 1.25px, transparent 1.75px) 24px 31px / 127px 113px,
     radial-gradient(circle, rgba(20, 23, 19, 0.16) 0 1px, transparent 1.5px) 63px 17px / 173px 149px;
   pointer-events: none;
-  animation: particle-motion 24s ease-in-out infinite alternate;
+  animation: particle-motion 14s linear infinite;
   will-change: transform;
 }
 
@@ -304,21 +304,30 @@ footer {
 
 @keyframes wave-motion {
   from {
-    transform: scale(0.96);
+    transform: scale(0.9);
   }
 
   to {
-    transform: scale(1.08);
+    transform: scale(1.12);
   }
 }
 
 @keyframes particle-motion {
-  from {
-    transform: translate3d(-1.5%, 1%, 0);
+  0%,
+  100% {
+    transform: translate3d(-2%, 1%, 0);
   }
 
-  to {
-    transform: translate3d(2%, -1.5%, 0);
+  25% {
+    transform: translate3d(1%, -2%, 0);
+  }
+
+  50% {
+    transform: translate3d(2.5%, 1%, 0);
+  }
+
+  75% {
+    transform: translate3d(-1%, 2%, 0);
   }
 }
 
