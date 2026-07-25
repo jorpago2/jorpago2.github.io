@@ -13,6 +13,9 @@ test("exports the English simulator dashboard", async () => {
   assert.match(html, /href="https:\/\/github\.com\/jorpago2"[^>]*>GitHub/);
   assert.match(html, /href="https:\/\/jorpago2\.blogs\.uv\.es"[^>]*>Webpage/);
   assert.doesNotMatch(html, /<a[^>]*class="identity"/);
+  assert.match(html, /ENGINEERING · PHYSICS · EDUCATION/);
+  assert.match(html, /Learn engineering and physics interactively\./);
+  assert.match(html, /Explore electromagnetic waves and semiconductor devices/);
   assert.match(html, /Electromagnetic Wave Simulator/);
   assert.match(html, /2D FDTD · Electromagnetics &amp; photonics/);
   assert.match(html, /Semiconductor Device Simulator/);

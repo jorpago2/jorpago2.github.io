@@ -51,10 +51,11 @@ export default function Home() {
       </header>
 
       <section className="intro" id="top">
-        <p className="eyebrow">OPEN-SOURCE · BROWSER-BASED</p>
-        <h1>Interactive tools for computational physics.</h1>
+        <p className="eyebrow">ENGINEERING · PHYSICS · EDUCATION</p>
+        <h1>Learn engineering and physics interactively.</h1>
         <p className="lead">
-          Run, inspect, and validate scientific models directly in your browser.
+          Explore electromagnetic waves and semiconductor devices with visual,
+          browser-based numerical models.
         </p>
       </section>
 
