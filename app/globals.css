@@ -439,53 +439,93 @@ footer {
 
 @media (max-width: 560px) {
   main {
-    padding: 0 20px;
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    min-height: 100svh;
+    padding: 0 16px;
   }
 
   header {
     min-height: auto;
     align-items: stretch;
     flex-direction: column;
-    gap: 16px;
-    padding: 20px 0;
+    gap: 8px;
+    padding: 12px 0;
   }
 
   .avatar {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
   }
 
   .identity-copy small {
-    max-width: 210px;
+    max-width: 260px;
+    font-size: 11px;
   }
 
   .header-links {
     justify-content: flex-end;
   }
 
+  .header-link {
+    padding: 8px 12px;
+  }
+
   .intro {
-    padding: 54px 0 40px;
+    padding: 22px 0 18px;
+  }
+
+  .eyebrow {
+    margin-bottom: 10px;
   }
 
   h1 {
-    font-size: 44px;
+    margin-bottom: 0;
+    font-size: 36px;
+  }
+
+  .lead {
+    display: none;
+  }
+
+  .simulator-list {
+    min-height: 0;
+    grid-template-rows: repeat(2, minmax(190px, 1fr));
+    gap: 10px;
+    padding-bottom: 12px;
   }
 
   .simulator {
-    min-height: 430px;
-    padding: 24px;
+    min-height: 190px;
+    overflow: hidden;
+    padding: 16px;
   }
 
-  .simulator-heading,
+  .simulator::before {
+    width: 40px;
+    height: 4px;
+    margin-bottom: 10px;
+  }
+
+  .simulator-copy {
+    padding: 12px 0;
+  }
+
+  .simulator-copy p {
+    display: none;
+  }
+
+  h2 {
+    margin-bottom: 0;
+    font-size: clamp(27px, 8vw, 32px);
+  }
+
   .simulator-footer {
-    align-items: flex-start;
-    flex-direction: column;
+    padding-top: 10px;
   }
 
   footer {
-    align-items: flex-start;
-    flex-direction: column;
-    justify-content: center;
+    display: none;
   }
 }
 
