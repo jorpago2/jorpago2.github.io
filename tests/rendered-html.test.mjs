@@ -28,5 +28,7 @@ test("exports the English simulator dashboard", async () => {
   assert.match(html, /1D Drift–Diffusion · PN junction/);
   assert.match(html, /https:\/\/jorpago2\.github\.io\/fdtd-2d-simulator\//);
   assert.match(html, /https:\/\/jorpago2\.github\.io\/drift-difussion-simulator\//);
+  assert.match(html, /class="simulator-link"[^>]*target="_blank"/);
+  assert.doesNotMatch(html, /Open simulator/);
   assert.doesNotMatch(html, /PCMWriter|PICBench|Explorar|Proyectos/);
 });

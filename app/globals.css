@@ -190,6 +190,7 @@ h1 {
 }
 
 .simulator {
+  position: relative;
   min-height: 420px;
   display: flex;
   flex-direction: column;
@@ -202,6 +203,17 @@ h1 {
   background-size: cover;
   box-shadow: 0 14px 36px rgba(7, 18, 38, 0.18);
   color: white;
+}
+
+.simulator-link {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.simulator-link:focus-visible {
+  outline-color: var(--lime);
 }
 
 .simulator.fdtd {
@@ -230,8 +242,7 @@ h1 {
 }
 
 .simulator-heading,
-.simulator-footer,
-.actions {
+.simulator-footer {
   display: flex;
   align-items: center;
 }
@@ -293,27 +304,11 @@ h2 {
   border-top: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-.actions {
-  gap: 16px;
+.source-link {
+  position: relative;
+  z-index: 2;
   font-size: 11px;
   font-weight: 800;
-}
-
-.open-link {
-  padding: 12px 14px;
-  border-radius: 999px;
-  background: var(--ink);
-  color: white;
-  transition: transform 150ms ease;
-}
-
-.open-link:hover {
-  transform: translateY(-2px);
-}
-
-.simulator .open-link {
-  background: white;
-  color: #071226;
 }
 
 footer {
@@ -488,10 +483,6 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-
-  .open-link {
-    transition: none;
   }
 
   body::before,

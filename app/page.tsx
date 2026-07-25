@@ -62,6 +62,13 @@ export default function Home() {
       <section className="simulator-list" aria-label="Available simulators">
         {simulators.map((simulator) => (
           <article className={`simulator ${simulator.theme}`} key={simulator.title}>
+            <a
+              className="simulator-link"
+              href={simulator.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Open ${simulator.title} in a new tab`}
+            />
             <div className="simulator-heading">
               <span className="number">{simulator.number}</span>
               <span className="field">{simulator.field}</span>
@@ -72,14 +79,14 @@ export default function Home() {
             </div>
             <div className="simulator-footer">
               <span className="detail">{simulator.detail}</span>
-              <div className="actions">
-                <a className="source-link" href={simulator.repository}>
-                  Source <span aria-hidden="true">↗</span>
-                </a>
-                <a className="open-link" href={simulator.href}>
-                  Open simulator <span aria-hidden="true">↗</span>
-                </a>
-              </div>
+              <a
+                className="source-link"
+                href={simulator.repository}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Source <span aria-hidden="true">↗</span>
+              </a>
             </div>
           </article>
         ))}
