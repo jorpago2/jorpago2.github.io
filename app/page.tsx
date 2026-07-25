@@ -27,7 +27,7 @@ export default function Home() {
   return (
     <main>
       <header>
-        <a className="identity" href="https://github.com/jorpago2" aria-label="Jorge Parra on GitHub">
+        <div className="identity">
           <img
             className="avatar"
             src="https://avatars.githubusercontent.com/u/297438018?v=4"
@@ -39,10 +39,15 @@ export default function Home() {
             <strong>Jorge Parra</strong>
             <small>Assistant Professor at University of Valencia · Photonics · Electronics</small>
           </span>
-        </a>
-        <a className="github-link" href="https://github.com/jorpago2">
-          @jorpago2 <span aria-hidden="true">↗</span>
-        </a>
+        </div>
+        <nav className="header-links" aria-label="Profile links">
+          <a className="header-link" href="https://github.com/jorpago2">
+            GitHub <span aria-hidden="true">↗</span>
+          </a>
+          <a className="header-link" href="https://jorpago2.blogs.uv.es">
+            Webpage <span aria-hidden="true">↗</span>
+          </a>
+        </nav>
       </header>
 
       <section className="intro" id="top">
