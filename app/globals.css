@@ -19,10 +19,28 @@ html {
 }
 
 body {
+  position: relative;
+  overflow-x: hidden;
   margin: 0;
   background: var(--paper);
   color: var(--ink);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  z-index: 0;
+  inset: -20%;
+  background:
+    radial-gradient(circle at 18% 26%, rgba(216, 255, 84, 0.2), transparent 28%),
+    radial-gradient(circle at 82% 70%, rgba(185, 215, 255, 0.28), transparent 30%),
+    linear-gradient(rgba(20, 23, 19, 0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 23, 19, 0.022) 1px, transparent 1px);
+  background-size: auto, auto, 48px 48px, 48px 48px;
+  pointer-events: none;
+  animation: field-drift 20s ease-in-out infinite alternate;
+  will-change: transform;
 }
 
 a {
@@ -36,6 +54,8 @@ a:focus-visible {
 }
 
 main {
+  position: relative;
+  z-index: 1;
   width: min(1240px, 100%);
   min-height: 100vh;
   margin: 0 auto;
@@ -261,6 +281,16 @@ footer {
   letter-spacing: 0.07em;
 }
 
+@keyframes field-drift {
+  from {
+    transform: translate3d(-1.5%, -1%, 0) scale(1.02);
+  }
+
+  to {
+    transform: translate3d(1.5%, 1%, 0) scale(1.05);
+  }
+}
+
 @media (min-width: 821px) {
   main {
     display: grid;
@@ -395,5 +425,9 @@ footer {
 
   .open-link {
     transition: none;
+  }
+
+  body::before {
+    animation: none;
   }
 }
