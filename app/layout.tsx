@@ -3,24 +3,24 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://jorpago2.github.io"),
-  title: "Jorge Parra · Research Software",
+  title: "Jorge Parra · Scientific Simulators",
   description:
-    "Software abierto para simulación electromagnética, fotónica integrada y automatización experimental.",
+    "Open-source browser simulators for computational electromagnetics, photonics, and semiconductor devices.",
   openGraph: {
-    title: "Jorge Parra · Research Software",
+    title: "Jorge Parra · Scientific Simulators",
     description:
-      "Herramientas científicas para hacer visible la física, del modelo al laboratorio.",
+      "Interactive tools for computational physics, available directly in the browser.",
     url: "https://jorpago2.github.io/",
-    siteName: "Jorge Parra · Research Software",
-    locale: "es_ES",
+    siteName: "Jorge Parra · Scientific Simulators",
+    locale: "en_US",
     type: "website",
-    images: [{ url: "/og.png", alt: "Jorge Parra · Research Software" }],
+    images: [{ url: "/og.png", alt: "Jorge Parra · Scientific Simulators" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Jorge Parra · Research Software",
+    title: "Jorge Parra · Scientific Simulators",
     description:
-      "Herramientas científicas para hacer visible la física, del modelo al laboratorio.",
+      "Interactive tools for computational physics, available directly in the browser.",
     images: ["/og.png"],
   },
 };
@@ -31,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
+    <html lang="en">
       <body>{children}</body>
     </html>
   );
