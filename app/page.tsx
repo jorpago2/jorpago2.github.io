@@ -1,8 +1,8 @@
 const simulators = [
   {
     number: "01",
-    title: "2D FDTD Simulator",
-    field: "Electromagnetics & photonics",
+    title: "Electromagnetic Wave Simulator",
+    field: "2D FDTD · Electromagnetics & photonics",
     description:
       "Explore wave propagation, interference, resonators, waveguides, and advanced optical materials through more than 100 interactive scenes.",
     detail: "JavaScript · WebAssembly",
@@ -12,8 +12,8 @@ const simulators = [
   },
   {
     number: "02",
-    title: "1D Drift–Diffusion Simulator",
-    field: "Semiconductor devices",
+    title: "Semiconductor Device Simulator",
+    field: "1D Drift–Diffusion · PN junction",
     description:
       "Solve a silicon PN junction self-consistently with Poisson and carrier-continuity equations, then inspect fields, bands, currents, and convergence.",
     detail: "JavaScript · Scharfetter–Gummel",
