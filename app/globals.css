@@ -33,13 +33,34 @@ body::before {
   z-index: 0;
   inset: -20%;
   background:
-    radial-gradient(circle at 18% 26%, rgba(216, 255, 84, 0.2), transparent 28%),
-    radial-gradient(circle at 82% 70%, rgba(185, 215, 255, 0.28), transparent 30%),
-    linear-gradient(rgba(20, 23, 19, 0.022) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(20, 23, 19, 0.022) 1px, transparent 1px);
-  background-size: auto, auto, 48px 48px, 48px 48px;
+    repeating-radial-gradient(
+      circle at 8% 45%,
+      transparent 0 52px,
+      rgba(92, 126, 0, 0.08) 53px 54px,
+      transparent 55px 104px
+    ),
+    repeating-radial-gradient(
+      circle at 92% 58%,
+      transparent 0 64px,
+      rgba(64, 105, 154, 0.09) 65px 66px,
+      transparent 67px 128px
+    );
   pointer-events: none;
-  animation: field-drift 20s ease-in-out infinite alternate;
+  animation: wave-motion 18s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  z-index: 0;
+  inset: -10%;
+  background:
+    radial-gradient(circle, rgba(92, 126, 0, 0.3) 0 1.5px, transparent 2px) 0 0 / 83px 97px,
+    radial-gradient(circle, rgba(64, 105, 154, 0.26) 0 1.25px, transparent 1.75px) 24px 31px / 127px 113px,
+    radial-gradient(circle, rgba(20, 23, 19, 0.16) 0 1px, transparent 1.5px) 63px 17px / 173px 149px;
+  pointer-events: none;
+  animation: particle-motion 24s ease-in-out infinite alternate;
   will-change: transform;
 }
 
@@ -281,13 +302,23 @@ footer {
   letter-spacing: 0.07em;
 }
 
-@keyframes field-drift {
+@keyframes wave-motion {
   from {
-    transform: translate3d(-1.5%, -1%, 0) scale(1.02);
+    transform: scale(0.96);
   }
 
   to {
-    transform: translate3d(1.5%, 1%, 0) scale(1.05);
+    transform: scale(1.08);
+  }
+}
+
+@keyframes particle-motion {
+  from {
+    transform: translate3d(-1.5%, 1%, 0);
+  }
+
+  to {
+    transform: translate3d(2%, -1.5%, 0);
   }
 }
 
@@ -427,7 +458,8 @@ footer {
     transition: none;
   }
 
-  body::before {
+  body::before,
+  body::after {
     animation: none;
   }
 }
