@@ -271,6 +271,30 @@ footer {
     padding: 0 20px;
   }
 
+  header {
+    min-height: 142px;
+    align-items: flex-start;
+    padding: 24px 0;
+  }
+
+  .avatar {
+    width: 48px;
+    height: 48px;
+  }
+
+  .identity-copy small {
+    max-width: 210px;
+  }
+
+  .github-link {
+    padding: 9px 11px;
+    font-size: 0;
+  }
+
+  .github-link span {
+    font-size: 12px;
+  }
+
   .intro {
     padding: 54px 0 40px;
   }
@@ -311,26 +335,3 @@ footer {
     transition: none;
   }
 }
-  header {
-    min-height: 142px;
-    align-items: flex-start;
-    padding: 24px 0;
-  }
-
-  .avatar {
-    width: 48px;
-    height: 48px;
-  }
-
-  .identity-copy small {
-    max-width: 210px;
-  }
-
-  .github-link {
-    padding: 9px 11px;
-    font-size: 0;
-  }
-
-  .github-link span {
-    font-size: 12px;
-  }
