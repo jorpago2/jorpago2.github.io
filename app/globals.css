@@ -446,11 +446,16 @@ footer {
   }
 
   header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
     min-height: auto;
-    align-items: stretch;
-    flex-direction: column;
-    gap: 8px;
+    align-items: center;
+    gap: 12px;
     padding: 12px 0;
+  }
+
+  .identity {
+    gap: 10px;
   }
 
   .avatar {
@@ -458,17 +463,28 @@ footer {
     height: 40px;
   }
 
+  .identity-copy strong {
+    margin-bottom: 2px;
+  }
+
   .identity-copy small {
-    max-width: 260px;
-    font-size: 11px;
+    max-width: none;
+    font-size: 10px;
+    line-height: 1.3;
   }
 
   .header-links {
-    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+    gap: 2px;
   }
 
   .header-link {
-    padding: 8px 12px;
+    padding: 3px 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    font-size: 11px;
   }
 
   .intro {
