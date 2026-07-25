@@ -203,6 +203,7 @@ h1 {
   background-size: cover;
   box-shadow: 0 14px 36px rgba(7, 18, 38, 0.18);
   color: white;
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
 }
 
 .simulator-link {
@@ -235,6 +236,7 @@ h1 {
   height: 5px;
   margin-bottom: 40px;
   background: var(--lime);
+  transition: width 180ms ease;
 }
 
 .simulator.drift::before {
@@ -322,6 +324,18 @@ footer {
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.07em;
+}
+
+@media (hover: hover) {
+  .simulator:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 22px 48px rgba(7, 18, 38, 0.3);
+    filter: brightness(1.08);
+  }
+
+  .simulator:hover::before {
+    width: 82px;
+  }
 }
 
 @keyframes wave-motion {
@@ -468,11 +482,6 @@ footer {
     flex-direction: column;
   }
 
-  .actions {
-    width: 100%;
-    justify-content: space-between;
-  }
-
   footer {
     align-items: flex-start;
     flex-direction: column;
@@ -483,6 +492,11 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .simulator,
+  .simulator::before {
+    transition: none;
   }
 
   body::before,
