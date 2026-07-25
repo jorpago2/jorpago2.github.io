@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Jorge Parra · Scientific Simulators",
   description:
     "Open-source browser simulators for computational electromagnetics, photonics, and semiconductor devices.",
-  icons: { icon: "https://avatars.githubusercontent.com/u/297438018?v=4" },
+  icons: { icon: "/favicon.svg" },
   openGraph: {
     title: "Jorge Parra · Scientific Simulators",
     description:
