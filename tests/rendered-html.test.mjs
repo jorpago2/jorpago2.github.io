@@ -1,11 +1,16 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { access, readFile } from "node:fs/promises";
 import test from "node:test";
 
 const output = new URL("../out/index.html", import.meta.url);
 
 test("exports the English simulator dashboard", async () => {
   const html = await readFile(output, "utf8");
+
+  await Promise.all([
+    access(new URL("../out/fdtd-background.webp", import.meta.url)),
+    access(new URL("../out/semiconductor-background.webp", import.meta.url)),
+  ]);
 
   assert.match(html, /<title>Educational simulators<\/title>/);
   assert.match(html, /Assistant Professor at University of Valencia · Photonics · Electronics/);
