@@ -3,7 +3,7 @@
 :root {
   --ink: #141713;
   --muted: #697068;
-  --paper: #f4f5f1;
+  --paper: #f6f7f3;
   --surface: #ffffff;
   --line: #d8dcd5;
   --lime: #d8ff54;
@@ -43,49 +43,56 @@ main {
 }
 
 header {
-  min-height: 82px;
+  min-height: 112px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 32px;
   border-bottom: 1px solid var(--line);
 }
 
 .identity {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
+  min-width: 0;
 }
 
-.monogram {
-  width: 38px;
-  height: 38px;
-  display: grid;
-  place-items: center;
+.avatar {
+  flex: 0 0 auto;
   border-radius: 50%;
-  background: var(--ink);
-  color: white;
-  font-size: 11px;
-  font-weight: 800;
+  border: 1px solid var(--line);
+  object-fit: cover;
 }
 
-.identity strong,
-.identity small {
+.identity-copy {
+  min-width: 0;
+}
+
+.identity-copy strong,
+.identity-copy small {
   display: block;
 }
 
-.identity strong {
-  font-size: 13px;
+.identity-copy strong {
+  margin-bottom: 5px;
+  font-size: 16px;
+  letter-spacing: -0.02em;
 }
 
-.identity small {
-  margin-top: 3px;
+.identity-copy small {
+  max-width: 520px;
   color: var(--muted);
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 1.4;
 }
 
 .github-link {
+  flex: 0 0 auto;
+  padding: 11px 15px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
   font-size: 12px;
   font-weight: 700;
 }
@@ -143,8 +150,9 @@ h1 {
   justify-content: space-between;
   padding: 30px;
   border: 1px solid var(--line);
-  border-radius: 3px;
+  border-radius: 16px;
   background: var(--surface);
+  box-shadow: 0 14px 36px rgba(20, 23, 19, 0.05);
 }
 
 .simulator::before {
@@ -225,7 +233,7 @@ h2 {
 
 .open-link {
   padding: 12px 14px;
-  border-radius: 2px;
+  border-radius: 999px;
   background: var(--ink);
   color: white;
   transition: transform 150ms ease;
@@ -303,3 +311,26 @@ footer {
     transition: none;
   }
 }
+  header {
+    min-height: 142px;
+    align-items: flex-start;
+    padding: 24px 0;
+  }
+
+  .avatar {
+    width: 48px;
+    height: 48px;
+  }
+
+  .identity-copy small {
+    max-width: 210px;
+  }
+
+  .github-link {
+    padding: 9px 11px;
+    font-size: 0;
+  }
+
+  .github-link span {
+    font-size: 12px;
+  }

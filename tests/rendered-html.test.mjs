@@ -8,6 +8,8 @@ test("exports the English simulator dashboard", async () => {
   const html = await readFile(output, "utf8");
 
   assert.match(html, /Jorge Parra · Scientific Simulators/);
+  assert.match(html, /Assistant Professor at University of Valencia · Photonics · Electronics/);
+  assert.match(html, /avatars\.githubusercontent\.com\/u\/297438018\?v=4/);
   assert.match(html, /Electromagnetic Wave Simulator/);
   assert.match(html, /2D FDTD · Electromagnetics &amp; photonics/);
   assert.match(html, /Semiconductor Device Simulator/);

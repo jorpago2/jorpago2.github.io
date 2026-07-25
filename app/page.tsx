@@ -27,15 +27,21 @@ export default function Home() {
   return (
     <main>
       <header>
-        <a className="identity" href="#top" aria-label="Back to top">
-          <span className="monogram" aria-hidden="true">JP</span>
-          <span>
+        <a className="identity" href="https://github.com/jorpago2" aria-label="Jorge Parra on GitHub">
+          <img
+            className="avatar"
+            src="https://avatars.githubusercontent.com/u/297438018?v=4"
+            alt="Jorge Parra"
+            width="56"
+            height="56"
+          />
+          <span className="identity-copy">
             <strong>Jorge Parra</strong>
-            <small>Scientific simulators</small>
+            <small>Assistant Professor at University of Valencia · Photonics · Electronics</small>
           </span>
         </a>
         <a className="github-link" href="https://github.com/jorpago2">
-          GitHub <span aria-hidden="true">↗</span>
+          @jorpago2 <span aria-hidden="true">↗</span>
         </a>
       </header>
 
