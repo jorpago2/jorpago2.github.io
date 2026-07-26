@@ -29,6 +29,9 @@ test("exports the English simulator dashboard", async () => {
   assert.match(html, /https:\/\/jorpago2\.github\.io\/fdtd-2d-simulator\//);
   assert.match(html, /https:\/\/jorpago2\.github\.io\/drift-difussion-simulator\//);
   assert.match(html, /class="simulator-link"[^>]*target="_blank"/);
+  assert.equal((html.match(/class="simulator-link"/g) ?? []).length, 2);
+  assert.match(html, /Coming soon/);
+  assert.match(html, /New educational simulators and engineering tools/);
   assert.doesNotMatch(html, /Open simulator/);
   assert.doesNotMatch(html, /PCMWriter|PICBench|Explorar|Proyectos/);
 });

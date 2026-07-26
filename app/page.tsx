@@ -90,6 +90,23 @@ export default function Home() {
             </div>
           </article>
         ))}
+        <article className="simulator soon">
+          <div className="simulator-heading">
+            <span className="number">03</span>
+            <span className="field">More simulations &amp; tools</span>
+          </div>
+          <div className="simulator-copy">
+            <h2>Coming soon</h2>
+            <p>
+              New educational simulators and engineering tools are currently in
+              development.
+            </p>
+          </div>
+          <div className="simulator-footer">
+            <span className="detail">Research · Teaching · Open source</span>
+            <span className="status">In development</span>
+          </div>
+        </article>
       </section>
 
       <footer>
