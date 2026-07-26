@@ -344,6 +344,11 @@ footer {
 }
 
 @media (hover: hover) {
+  .simulator.soon:hover {
+    cursor: not-allowed;
+    filter: grayscale(0.9) brightness(0.72);
+  }
+
   .simulator:not(.soon):hover {
     transform: translateY(-6px);
     box-shadow: 0 22px 48px rgba(7, 18, 38, 0.3);
