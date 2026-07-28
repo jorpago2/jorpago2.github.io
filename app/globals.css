@@ -336,15 +336,15 @@ h2 {
 }
 
 .research-heading {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 32px;
-  margin-bottom: 18px;
+  max-width: 760px;
+  margin-bottom: 24px;
+  padding-left: 18px;
+  border-left: 4px solid var(--lime);
 }
 
 .research-heading .eyebrow {
-  margin-bottom: 0;
+  margin-bottom: 10px;
+  color: #5c7e00;
 }
 
 .research-heading h2 {
@@ -511,13 +511,6 @@ footer {
   .simulator {
     min-height: 380px;
   }
-
-  .research-heading {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 8px;
-  }
-
 }
 
 @media (max-width: 560px) {

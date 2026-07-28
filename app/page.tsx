@@ -111,8 +111,10 @@ export default function Home() {
 
       <section className="research-tools" aria-labelledby="research-tools-title">
         <div className="research-heading">
-          <p className="eyebrow">RESEARCH SOFTWARE</p>
-          <h2 id="research-tools-title">Tools for experimental workflows.</h2>
+          <p className="eyebrow">RESEARCH</p>
+          <h2 id="research-tools-title">
+            Tools for fabrication and experimental workflows.
+          </h2>
         </div>
 
         <div className="research-list">
