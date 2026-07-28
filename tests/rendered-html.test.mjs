@@ -10,6 +10,8 @@ test("exports the English simulator dashboard", async () => {
   await Promise.all([
     access(new URL("../out/fdtd-background.webp", import.meta.url)),
     access(new URL("../out/gds2goo-background.webp", import.meta.url)),
+    access(new URL("../out/pcmwriter-background.webp", import.meta.url)),
+    access(new URL("../out/picbench-background.webp", import.meta.url)),
     access(new URL("../out/semiconductor-background.webp", import.meta.url)),
     access(new URL("../out/spincoatsim-background.webp", import.meta.url)),
   ]);
@@ -31,7 +33,7 @@ test("exports the English simulator dashboard", async () => {
   assert.match(html, /https:\/\/jorpago2\.github\.io\/fdtd-2d-simulator\//);
   assert.match(html, /https:\/\/jorpago2\.github\.io\/drift-difussion-simulator\//);
   assert.match(html, /class="simulator-link"[^>]*target="_blank"/);
-  assert.equal((html.match(/class="simulator-link"/g) ?? []).length, 4);
+  assert.equal((html.match(/class="simulator-link"/g) ?? []).length, 6);
   assert.match(html, /Coming soon/);
   assert.equal((html.match(/<h2>Coming soon<\/h2>/g) ?? []).length, 2);
   assert.match(html, /New educational simulators and engineering tools/);
@@ -52,6 +54,14 @@ test("exports the English simulator dashboard", async () => {
   assert.match(html, /https:\/\/jorpago2\.github\.io\/spincoatsim\//);
   assert.match(html, /https:\/\/github\.com\/jorpago2\/spincoatsim/);
   assert.match(html, /RPM-calibrated film/);
+  assert.match(html, /DESKTOP SOFTWARE/);
+  assert.match(html, /Laboratory software for Windows\./);
+  assert.match(html, /PCMWriter/);
+  assert.match(html, /PICBench/);
+  assert.match(html, /PCMWriter-Windows-x64-v0\.3\.0\.zip/);
+  assert.match(html, /picbench\/releases\/download\/v0\.1\.1\/PICBench\.exe/);
+  assert.match(html, /Download PCMWriter v0\.3\.0 for Windows/);
+  assert.match(html, /Download PICBench v0\.1\.1 for Windows/);
   assert.doesNotMatch(html, /Open simulator/);
-  assert.doesNotMatch(html, /PCMWriter|PICBench|Explorar|Proyectos/);
+  assert.doesNotMatch(html, /Explorar|Proyectos/);
 });
