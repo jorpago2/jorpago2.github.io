@@ -33,7 +33,10 @@ test("exports the English simulator dashboard", async () => {
   assert.match(html, /class="simulator-link"[^>]*target="_blank"/);
   assert.equal((html.match(/class="simulator-link"/g) ?? []).length, 4);
   assert.match(html, /Coming soon/);
+  assert.equal((html.match(/Coming soon/g) ?? []).length, 2);
   assert.match(html, /New educational simulators and engineering tools/);
+  assert.match(html, /More research tools/);
+  assert.match(html, /New tools for microfabrication and experimental workflows/);
   assert.match(html, />RESEARCH<\/p>/);
   assert.match(html, /Tools for fabrication and experimental workflows\./);
   assert.match(
