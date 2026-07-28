@@ -115,38 +115,72 @@ export default function Home() {
           <h2 id="research-tools-title">Tools for experimental workflows.</h2>
         </div>
 
-        <article className="simulator research-tool">
-          <a
-            className="simulator-link"
-            href="https://jorpago2.github.io/gds2goo/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Open GDS2GOO in a new tab"
-          />
-          <div className="simulator-heading">
-            <span className="number">01</span>
-            <span className="field">GDSII → GOO · Photolithography</span>
-          </div>
-          <div className="simulator-copy">
-            <h2>GDS2GOO</h2>
-            <p>
-              Convert GDSII layouts into validated, single-layer GOO exposure
-              files for maskless photolithography with the Elegoo Mars 4 9K.
-              All processing stays in the browser.
-            </p>
-          </div>
-          <div className="simulator-footer">
-            <span className="detail">JavaScript · Local processing</span>
+        <div className="research-list">
+          <article className="simulator research-tool gds2goo">
             <a
-              className="source-link"
-              href="https://github.com/jorpago2/gds2goo"
+              className="simulator-link"
+              href="https://jorpago2.github.io/gds2goo/"
               target="_blank"
               rel="noopener noreferrer"
-            >
-              Source <span aria-hidden="true">↗</span>
-            </a>
-          </div>
-        </article>
+              aria-label="Open GDS2GOO in a new tab"
+            />
+            <div className="simulator-heading">
+              <span className="number">01</span>
+              <span className="field">GDSII → GOO · Photolithography</span>
+            </div>
+            <div className="simulator-copy">
+              <h2>GDS2GOO</h2>
+              <p>
+                Convert GDSII layouts into validated, single-layer GOO exposure
+                files for maskless photolithography with the Elegoo Mars 4 9K.
+                All processing stays in the browser.
+              </p>
+            </div>
+            <div className="simulator-footer">
+              <span className="detail">JavaScript · Local processing</span>
+              <a
+                className="source-link"
+                href="https://github.com/jorpago2/gds2goo"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Source <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </article>
+
+          <article className="simulator research-tool spincoat">
+            <a
+              className="simulator-link"
+              href="https://jorpago2.github.io/spincoatsim/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open SpinCoatSim in a new tab"
+            />
+            <div className="simulator-heading">
+              <span className="number">02</span>
+              <span className="field">Spin coating · Thin-film processing</span>
+            </div>
+            <div className="simulator-copy">
+              <h2>SpinCoatSim</h2>
+              <p>
+                Model GDSII cross-sections, material stacks, RPM-calibrated film
+                thickness, annealing shrinkage, and planarization in the browser.
+              </p>
+            </div>
+            <div className="simulator-footer">
+              <span className="detail">TypeScript · Local processing</span>
+              <a
+                className="source-link"
+                href="https://github.com/jorpago2/spincoatsim"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Source <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </article>
+        </div>
       </section>
 
       <footer>

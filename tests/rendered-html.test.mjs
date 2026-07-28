@@ -11,6 +11,7 @@ test("exports the English simulator dashboard", async () => {
     access(new URL("../out/fdtd-background.webp", import.meta.url)),
     access(new URL("../out/gds2goo-background.webp", import.meta.url)),
     access(new URL("../out/semiconductor-background.webp", import.meta.url)),
+    access(new URL("../out/spincoatsim-background.webp", import.meta.url)),
   ]);
 
   assert.match(html, /<title>Educational simulators<\/title>/);
@@ -30,7 +31,7 @@ test("exports the English simulator dashboard", async () => {
   assert.match(html, /https:\/\/jorpago2\.github\.io\/fdtd-2d-simulator\//);
   assert.match(html, /https:\/\/jorpago2\.github\.io\/drift-difussion-simulator\//);
   assert.match(html, /class="simulator-link"[^>]*target="_blank"/);
-  assert.equal((html.match(/class="simulator-link"/g) ?? []).length, 3);
+  assert.equal((html.match(/class="simulator-link"/g) ?? []).length, 4);
   assert.match(html, /Coming soon/);
   assert.match(html, /New educational simulators and engineering tools/);
   assert.match(html, /RESEARCH SOFTWARE/);
@@ -39,6 +40,10 @@ test("exports the English simulator dashboard", async () => {
   assert.match(html, /https:\/\/jorpago2\.github\.io\/gds2goo\//);
   assert.match(html, /https:\/\/github\.com\/jorpago2\/gds2goo/);
   assert.match(html, /All processing stays in the browser\./);
+  assert.match(html, /SpinCoatSim/);
+  assert.match(html, /https:\/\/jorpago2\.github\.io\/spincoatsim\//);
+  assert.match(html, /https:\/\/github\.com\/jorpago2\/spincoatsim/);
+  assert.match(html, /RPM-calibrated film/);
   assert.doesNotMatch(html, /Open simulator/);
   assert.doesNotMatch(html, /PCMWriter|PICBench|Explorar|Proyectos/);
 });
