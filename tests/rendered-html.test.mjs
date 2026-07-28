@@ -9,6 +9,7 @@ test("exports the English simulator dashboard", async () => {
 
   await Promise.all([
     access(new URL("../out/fdtd-background.webp", import.meta.url)),
+    access(new URL("../out/gds2goo-background.webp", import.meta.url)),
     access(new URL("../out/semiconductor-background.webp", import.meta.url)),
   ]);
 

@@ -356,9 +356,8 @@ h2 {
 .simulator.research-tool {
   min-height: 260px;
   background-image:
-    linear-gradient(90deg, rgba(3, 9, 24, 0.98), rgba(3, 9, 24, 0.72)),
-    radial-gradient(circle at 82% 30%, rgba(216, 255, 84, 0.32), transparent 28%),
-    radial-gradient(circle at 70% 82%, rgba(185, 215, 255, 0.28), transparent 32%);
+    linear-gradient(90deg, rgba(3, 9, 24, 0.98), rgba(3, 9, 24, 0.84) 52%, rgba(3, 9, 24, 0.28)),
+    url("/gds2goo-background.webp");
 }
 
 .research-tool::before {
