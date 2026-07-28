@@ -17,7 +17,7 @@ test("exports the English simulator dashboard", async () => {
   assert.match(html, /avatars\.githubusercontent\.com\/u\/297438018\?v=4/);
   assert.match(html, /<link rel="icon" href="\/favicon\.svg"/);
   assert.match(html, /href="https:\/\/github\.com\/jorpago2"[^>]*>GitHub/);
-  assert.match(html, /href="https:\/\/jorpago2\.blogs\.uv\.es"[^>]*>Webpage/);
+  assert.match(html, /href="https:\/\/www\.uv\.es\/jorpago2"[^>]*>Webpage/);
   assert.doesNotMatch(html, /<a[^>]*class="identity"/);
   assert.match(html, /ENGINEERING · PHYSICS · EDUCATION/);
   assert.match(html, /Learn engineering and physics interactively\./);

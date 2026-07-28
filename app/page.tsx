@@ -44,7 +44,7 @@ export default function Home() {
           <a className="header-link" href="https://github.com/jorpago2">
             GitHub <span aria-hidden="true">↗</span>
           </a>
-          <a className="header-link" href="https://jorpago2.blogs.uv.es">
+          <a className="header-link" href="https://www.uv.es/jorpago2">
             Webpage <span aria-hidden="true">↗</span>
           </a>
         </nav>
