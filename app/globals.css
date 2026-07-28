@@ -153,6 +153,19 @@ header {
   padding: 70px 0 52px;
 }
 
+.section-heading {
+  padding-left: 18px;
+  border-left: 4px solid var(--lime);
+}
+
+.education-heading {
+  border-color: var(--blue);
+}
+
+.education-heading .eyebrow {
+  color: #40699a;
+}
+
 .eyebrow {
   margin: 0 0 18px;
   color: var(--muted);
@@ -338,8 +351,6 @@ h2 {
 .research-heading {
   max-width: 760px;
   margin-bottom: 24px;
-  padding-left: 18px;
-  border-left: 4px solid var(--lime);
 }
 
 .research-heading .eyebrow {
@@ -349,8 +360,13 @@ h2 {
 
 .research-heading h2 {
   max-width: 680px;
-  margin-bottom: 0;
+  margin-bottom: 14px;
   font-size: clamp(32px, 4vw, 48px);
+}
+
+.research-lead {
+  max-width: 680px;
+  font-size: 15px;
 }
 
 .research-list {
@@ -578,6 +594,11 @@ footer {
 
   .lead {
     display: none;
+  }
+
+  .research-lead {
+    display: block;
+    font-size: 13px;
   }
 
   .simulator-list {

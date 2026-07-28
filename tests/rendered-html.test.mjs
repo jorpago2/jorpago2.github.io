@@ -36,6 +36,10 @@ test("exports the English simulator dashboard", async () => {
   assert.match(html, /New educational simulators and engineering tools/);
   assert.match(html, />RESEARCH<\/p>/);
   assert.match(html, /Tools for fabrication and experimental workflows\./);
+  assert.match(
+    html,
+    /Prepare lithography files and explore thin-film processing/,
+  );
   assert.doesNotMatch(html, /RESEARCH SOFTWARE/);
   assert.match(html, /GDS2GOO/);
   assert.match(html, /https:\/\/jorpago2\.github\.io\/gds2goo\//);

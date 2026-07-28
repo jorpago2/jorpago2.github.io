@@ -51,12 +51,14 @@ export default function Home() {
       </header>
 
       <section className="intro" id="top">
-        <p className="eyebrow">ENGINEERING · PHYSICS · EDUCATION</p>
-        <h1>Learn engineering and physics interactively.</h1>
-        <p className="lead">
-          Explore electromagnetic waves and semiconductor devices with visual,
-          browser-based numerical models.
-        </p>
+        <div className="section-heading education-heading">
+          <p className="eyebrow">ENGINEERING · PHYSICS · EDUCATION</p>
+          <h1>Learn engineering and physics interactively.</h1>
+          <p className="lead">
+            Explore electromagnetic waves and semiconductor devices with
+            visual, browser-based numerical models.
+          </p>
+        </div>
       </section>
 
       <section className="simulator-list" aria-label="Available simulators">
@@ -110,11 +112,15 @@ export default function Home() {
       </section>
 
       <section className="research-tools" aria-labelledby="research-tools-title">
-        <div className="research-heading">
+        <div className="section-heading research-heading">
           <p className="eyebrow">RESEARCH</p>
           <h2 id="research-tools-title">
             Tools for fabrication and experimental workflows.
           </h2>
+          <p className="lead research-lead">
+            Prepare lithography files and explore thin-film processing with
+            reproducible, browser-based tools.
+          </p>
         </div>
 
         <div className="research-list">
