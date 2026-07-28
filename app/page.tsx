@@ -109,6 +109,46 @@ export default function Home() {
         </article>
       </section>
 
+      <section className="research-tools" aria-labelledby="research-tools-title">
+        <div className="research-heading">
+          <p className="eyebrow">RESEARCH SOFTWARE</p>
+          <h2 id="research-tools-title">Tools for experimental workflows.</h2>
+        </div>
+
+        <article className="simulator research-tool">
+          <a
+            className="simulator-link"
+            href="https://jorpago2.github.io/gds2goo/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open GDS2GOO in a new tab"
+          />
+          <div className="simulator-heading">
+            <span className="number">01</span>
+            <span className="field">GDSII → GOO · Photolithography</span>
+          </div>
+          <div className="simulator-copy">
+            <h2>GDS2GOO</h2>
+            <p>
+              Convert GDSII layouts into validated, single-layer GOO exposure
+              files for maskless photolithography with the Elegoo Mars 4 9K.
+              All processing stays in the browser.
+            </p>
+          </div>
+          <div className="simulator-footer">
+            <span className="detail">JavaScript · Local processing</span>
+            <a
+              className="source-link"
+              href="https://github.com/jorpago2/gds2goo"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Source <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </article>
+      </section>
+
       <footer>
         <span>Research and teaching software</span>
         <span>Valencia, Spain · 2026</span>
