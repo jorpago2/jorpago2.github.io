@@ -212,7 +212,7 @@ export default function Home() {
       <section className="desktop-tools" aria-labelledby="desktop-tools-title">
         <div className="section-heading desktop-heading">
           <p className="eyebrow">DESKTOP SOFTWARE</p>
-          <h2 id="desktop-tools-title">Laboratory software for Windows.</h2>
+          <h2 id="desktop-tools-title">Laboratory software.</h2>
           <p className="lead desktop-lead">
             Download tools for optical programming, fiber alignment, and
             automated photonic characterization.

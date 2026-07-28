@@ -55,7 +55,8 @@ test("exports the English simulator dashboard", async () => {
   assert.match(html, /https:\/\/github\.com\/jorpago2\/spincoatsim/);
   assert.match(html, /RPM-calibrated film/);
   assert.match(html, /DESKTOP SOFTWARE/);
-  assert.match(html, /Laboratory software for Windows\./);
+  assert.match(html, /Laboratory software\./);
+  assert.doesNotMatch(html, /Laboratory software for Windows\./);
   assert.match(html, /PCMWriter/);
   assert.match(html, /PICBench/);
   assert.match(html, /PCMWriter-Windows-x64-v0\.3\.0\.zip/);
