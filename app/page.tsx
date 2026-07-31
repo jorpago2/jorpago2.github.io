@@ -1,3 +1,5 @@
+import { DesktopReleaseCard } from "./desktop-release-card";
+
 const simulators = [
   {
     number: "01",
@@ -220,67 +222,30 @@ export default function Home() {
         </div>
 
         <div className="desktop-list">
-          <article className="simulator desktop-tool pcmwriter">
-            <a
-              className="simulator-link"
-              href="https://github.com/jorpago2/pcmwriter/releases/download/v0.3.0/PCMWriter-Windows-x64-v0.3.0.zip"
-              download
-              aria-label="Download PCMWriter v0.3.0 for Windows"
-            />
-            <div className="simulator-heading">
-              <span className="number">01</span>
-              <span className="field">Windows x64 · Direct download</span>
-            </div>
-            <div className="simulator-copy">
-              <h2>PCMWriter</h2>
-              <p>
-                Program and characterize phase-change materials on silicon
-                photonic devices through guarded optical and motion workflows.
-              </p>
-            </div>
-            <div className="simulator-footer">
-              <span className="detail">Python · v0.3.0 · ZIP</span>
-              <a
-                className="source-link"
-                href="https://github.com/jorpago2/pcmwriter"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Source <span aria-hidden="true">↗</span>
-              </a>
-            </div>
-          </article>
-
-          <article className="simulator desktop-tool picbench">
-            <a
-              className="simulator-link"
-              href="https://github.com/jorpago2/picbench/releases/download/v0.1.1/PICBench.exe"
-              download
-              aria-label="Download PICBench v0.1.1 for Windows"
-            />
-            <div className="simulator-heading">
-              <span className="number">02</span>
-              <span className="field">Windows x64 · Direct download</span>
-            </div>
-            <div className="simulator-copy">
-              <h2>PICBench</h2>
-              <p>
-                Align optical fibers with camera guidance and automate spectral
-                characterization of silicon photonic integrated circuits.
-              </p>
-            </div>
-            <div className="simulator-footer">
-              <span className="detail">Python · v0.1.1 · EXE</span>
-              <a
-                className="source-link"
-                href="https://github.com/jorpago2/picbench"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Source <span aria-hidden="true">↗</span>
-              </a>
-            </div>
-          </article>
+          <DesktopReleaseCard
+            number="01"
+            title="PCMWriter"
+            description="Program and characterize phase-change materials on silicon photonic devices through guarded optical and motion workflows."
+            technology="Python"
+            format="ZIP"
+            repository="jorpago2/pcmwriter"
+            assetExtension=".zip"
+            fallbackVersion="v0.5.0"
+            fallbackUrl="https://github.com/jorpago2/pcmwriter/releases/download/v0.5.0/PCMWriter-Windows-x64-v0.5.0.zip"
+            theme="pcmwriter"
+          />
+          <DesktopReleaseCard
+            number="02"
+            title="PICBench"
+            description="Align optical fibers with camera guidance and automate spectral characterization of silicon photonic integrated circuits."
+            technology="Python"
+            format="EXE"
+            repository="jorpago2/picbench"
+            assetExtension=".exe"
+            fallbackVersion="v0.2.0"
+            fallbackUrl="https://github.com/jorpago2/picbench/releases/download/v0.2.0/PICBench.exe"
+            theme="picbench"
+          />
         </div>
       </section>
 

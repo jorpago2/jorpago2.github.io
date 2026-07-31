@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { access, readFile } from "node:fs/promises";
 import test from "node:test";
+import { selectReleaseAsset } from "../app/github-release.mjs";
 
 const output = new URL("../out/index.html", import.meta.url);
 
@@ -59,13 +60,26 @@ test("exports the English simulator dashboard", async () => {
   assert.doesNotMatch(html, /Laboratory software for Windows\./);
   assert.match(html, /PCMWriter/);
   assert.match(html, /PICBench/);
-  assert.match(html, /PCMWriter-Windows-x64-v0\.3\.0\.zip/);
-  assert.match(html, /picbench\/releases\/download\/v0\.1\.1\/PICBench\.exe/);
-  assert.match(html, /Download PCMWriter v0\.3\.0 for Windows/);
-  assert.match(html, /Download PICBench v0\.1\.1 for Windows/);
+  assert.match(html, /PCMWriter-Windows-x64-v0\.5\.0\.zip/);
+  assert.match(html, /picbench\/releases\/download\/v0\.2\.0\/PICBench\.exe/);
+  assert.match(html, /Download PCMWriter v0\.5\.0 for Windows/);
+  assert.match(html, /Download PICBench v0\.2\.0 for Windows/);
   assert.match(html, /Built for open research and hands-on learning\./);
   assert.match(html, /aria-label="Footer links"/);
   assert.match(html, /href="#top">Back to top/);
   assert.doesNotMatch(html, /Open simulator/);
   assert.doesNotMatch(html, /Explorar|Proyectos/);
+});
+
+test("selects release downloads instead of checksum files", () => {
+  const assets = [
+    { name: "Tool.exe.sha256", browser_download_url: "checksum" },
+    { name: "Tool.exe", browser_download_url: "download" },
+  ];
+
+  assert.equal(
+    selectReleaseAsset(assets, ".exe")?.browser_download_url,
+    "download",
+  );
+  assert.equal(selectReleaseAsset(assets, ".zip"), undefined);
 });
