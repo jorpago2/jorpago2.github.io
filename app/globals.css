@@ -417,6 +417,12 @@ h2 {
     url("/spincoatsim-background.webp");
 }
 
+.simulator.reflectometry {
+  background-image:
+    linear-gradient(90deg, rgba(3, 9, 24, 0.98), rgba(3, 9, 24, 0.84) 52%, rgba(3, 9, 24, 0.24)),
+    url("/reflectometry-background.webp");
+}
+
 .research-tool::before {
   background: linear-gradient(90deg, var(--lime), var(--blue));
 }

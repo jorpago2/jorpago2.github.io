@@ -120,8 +120,8 @@ export default function Home() {
             Tools for fabrication and experimental workflows.
           </h2>
           <p className="lead research-lead">
-            Prepare lithography files and explore thin-film processing with
-            reproducible, browser-based tools.
+            Prepare lithography files, model thin-film processing, and fit
+            optical measurements with reproducible, browser-based tools.
           </p>
         </div>
 
@@ -191,21 +191,36 @@ export default function Home() {
             </div>
           </article>
 
-          <article className="simulator research-tool soon">
+          <article className="simulator research-tool reflectometry">
+            <a
+              className="simulator-link"
+              href="https://jorpago2.github.io/reflectometry/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open Reflectometry in a new tab"
+            />
             <div className="simulator-heading">
               <span className="number">03</span>
-              <span className="field">More research tools</span>
+              <span className="field">Reflectometry · Optical constants</span>
             </div>
             <div className="simulator-copy">
-              <h2>Coming soon</h2>
+              <h2>Reflectometry</h2>
               <p>
-                New tools for microfabrication and experimental workflows are
-                currently in development.
+                Fit generic multilayer reflectance and transmittance spectra
+                with independent dielectric models, a dispersive complex
+                substrate, and uncertainty diagnostics.
               </p>
             </div>
             <div className="simulator-footer">
-              <span className="detail">Fabrication · Modeling · Open source</span>
-              <span className="status">In development</span>
+              <span className="detail">JavaScript · Local fitting</span>
+              <a
+                className="source-link"
+                href="https://github.com/jorpago2/reflectometry"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Source <span aria-hidden="true">↗</span>
+              </a>
             </div>
           </article>
         </div>
