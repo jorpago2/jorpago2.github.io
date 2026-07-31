@@ -63,6 +63,9 @@ test("exports the English simulator dashboard", async () => {
   assert.match(html, /picbench\/releases\/download\/v0\.1\.1\/PICBench\.exe/);
   assert.match(html, /Download PCMWriter v0\.3\.0 for Windows/);
   assert.match(html, /Download PICBench v0\.1\.1 for Windows/);
+  assert.match(html, /Built for open research and hands-on learning\./);
+  assert.match(html, /aria-label="Footer links"/);
+  assert.match(html, /href="#top">Back to top/);
   assert.doesNotMatch(html, /Open simulator/);
   assert.doesNotMatch(html, /Explorar|Proyectos/);
 });

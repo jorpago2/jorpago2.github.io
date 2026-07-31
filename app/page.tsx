@@ -284,9 +284,31 @@ export default function Home() {
         </div>
       </section>
 
-      <footer>
-        <span>Research and teaching software</span>
-        <span>Valencia, Spain · 2026</span>
+      <footer className="site-footer">
+        <div className="footer-copy">
+          <strong>Built for open research and hands-on learning.</strong>
+          <p>Browser-based simulators, fabrication tools, and laboratory software.</p>
+        </div>
+        <div className="footer-meta">
+          <nav className="footer-links" aria-label="Footer links">
+            <a
+              href="https://github.com/jorpago2"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub <span aria-hidden="true">↗</span>
+            </a>
+            <a
+              href="https://www.uv.es/jorpago2"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              University profile <span aria-hidden="true">↗</span>
+            </a>
+            <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
+          </nav>
+          <p className="footer-location">Jorge Parra · Valencia, Spain · 2026</p>
+        </div>
       </footer>
     </main>
   );
