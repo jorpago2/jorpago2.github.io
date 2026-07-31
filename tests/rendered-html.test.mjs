@@ -16,7 +16,7 @@ test("exports the English simulator dashboard", async () => {
     access(new URL("../out/spincoatsim-background.webp", import.meta.url)),
   ]);
 
-  assert.match(html, /<title>Educational simulators<\/title>/);
+  assert.match(html, /<title>Online Simulators &amp; Tools<\/title>/);
   assert.match(html, /Assistant Professor at University of Valencia · Photonics · Electronics/);
   assert.match(html, /avatars\.githubusercontent\.com\/u\/297438018\?v=4/);
   assert.match(html, /<link rel="icon" href="\/favicon\.svg"/);

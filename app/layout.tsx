@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://jorpago2.github.io"),
-  title: "Educational simulators",
+  title: "Online Simulators & Tools",
   description:
     "Open-source browser simulators for computational electromagnetics, photonics, and semiconductor devices.",
   icons: { icon: "/favicon.svg" },
