@@ -23,6 +23,17 @@ const simulators = [
     repository: "https://github.com/jorpago2/drift-difussion-simulator",
     theme: "drift",
   },
+  {
+    number: "03",
+    title: "RF Network Simulator",
+    field: "Two-port networks · S-parameters",
+    description:
+      "Build linear RF chains, import Touchstone S2P files, and inspect S-parameters, phase, group delay, mismatch, and internal reflections.",
+    detail: "React · TypeScript · Local-first",
+    href: "https://jorpago2.github.io/rf-web-simulator/",
+    repository: "https://github.com/jorpago2/rf-web-simulator",
+    theme: "rf",
+  },
 ] as const;
 
 export default function Home() {
@@ -57,8 +68,8 @@ export default function Home() {
           <p className="eyebrow">ENGINEERING · PHYSICS · EDUCATION</p>
           <h1>Learn engineering and physics interactively.</h1>
           <p className="lead">
-            Explore electromagnetic waves and semiconductor devices with
-            visual, browser-based numerical models.
+            Explore electromagnetic waves, RF networks, and semiconductor
+            devices with visual, browser-based numerical models.
           </p>
         </div>
       </section>
@@ -94,23 +105,6 @@ export default function Home() {
             </div>
           </article>
         ))}
-        <article className="simulator soon">
-          <div className="simulator-heading">
-            <span className="number">03</span>
-            <span className="field">More simulations &amp; tools</span>
-          </div>
-          <div className="simulator-copy">
-            <h2>Coming soon</h2>
-            <p>
-              New educational simulators and engineering tools are currently in
-              development.
-            </p>
-          </div>
-          <div className="simulator-footer">
-            <span className="detail">Research · Teaching · Open source</span>
-            <span className="status">In development</span>
-          </div>
-        </article>
       </section>
 
       <section className="research-tools" aria-labelledby="research-tools-title">

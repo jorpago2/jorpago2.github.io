@@ -14,6 +14,7 @@ test("exports the English simulator dashboard", async () => {
     access(new URL("../out/pcmwriter-background.webp", import.meta.url)),
     access(new URL("../out/picbench-background.webp", import.meta.url)),
     access(new URL("../out/reflectometry-background.webp", import.meta.url)),
+    access(new URL("../out/rf-simulator-background.webp", import.meta.url)),
     access(new URL("../out/semiconductor-background.webp", import.meta.url)),
     access(new URL("../out/spincoatsim-background.webp", import.meta.url)),
   ]);
@@ -27,7 +28,7 @@ test("exports the English simulator dashboard", async () => {
   assert.doesNotMatch(html, /<a[^>]*class="identity"/);
   assert.match(html, /ENGINEERING · PHYSICS · EDUCATION/);
   assert.match(html, /Learn engineering and physics interactively\./);
-  assert.match(html, /Explore electromagnetic waves and semiconductor devices/);
+  assert.match(html, /Explore electromagnetic waves, RF networks/);
   assert.match(html, /Electromagnetic Wave Simulator/);
   assert.match(html, /2D FDTD · Electromagnetics &amp; photonics/);
   assert.match(html, /Semiconductor Device Simulator/);
@@ -35,10 +36,12 @@ test("exports the English simulator dashboard", async () => {
   assert.match(html, /https:\/\/jorpago2\.github\.io\/fdtd-2d-simulator\//);
   assert.match(html, /https:\/\/jorpago2\.github\.io\/drift-difussion-simulator\//);
   assert.match(html, /class="simulator-link"[^>]*target="_blank"/);
-  assert.equal((html.match(/class="simulator-link"/g) ?? []).length, 7);
-  assert.match(html, /Coming soon/);
-  assert.equal((html.match(/<h2>Coming soon<\/h2>/g) ?? []).length, 1);
-  assert.match(html, /New educational simulators and engineering tools/);
+  assert.equal((html.match(/class="simulator-link"/g) ?? []).length, 8);
+  assert.doesNotMatch(html, /Coming soon/);
+  assert.match(html, /RF Network Simulator/);
+  assert.match(html, /Two-port networks · S-parameters/);
+  assert.match(html, /https:\/\/jorpago2\.github\.io\/rf-web-simulator\//);
+  assert.match(html, /https:\/\/github\.com\/jorpago2\/rf-web-simulator/);
   assert.match(html, />RESEARCH<\/p>/);
   assert.match(html, /Tools for fabrication and optical characterization\./);
   assert.match(
