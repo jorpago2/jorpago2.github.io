@@ -205,7 +205,7 @@ export default function Home() {
               </p>
             </div>
             <div className="simulator-footer">
-              <span className="detail">TypeScript · Transfer-matrix method</span>
+              <span className="detail">React · TypeScript · Vite</span>
               <a
                 className="source-link"
                 href="https://github.com/jorpago2/reflectometry"
