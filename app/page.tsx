@@ -223,23 +223,6 @@ export default function Home() {
             </div>
           </article>
 
-          <article className="simulator research-tool soon">
-            <div className="simulator-heading">
-              <span className="number">04</span>
-              <span className="field">More research tools</span>
-            </div>
-            <div className="simulator-copy">
-              <h2>Coming soon</h2>
-              <p>
-                New tools for microfabrication and experimental workflows are
-                currently in development.
-              </p>
-            </div>
-            <div className="simulator-footer">
-              <span className="detail">Fabrication · Modeling · Open source</span>
-              <span className="status">In development</span>
-            </div>
-          </article>
         </div>
       </section>
 
