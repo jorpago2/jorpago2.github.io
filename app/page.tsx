@@ -117,11 +117,11 @@ export default function Home() {
         <div className="section-heading research-heading">
           <p className="eyebrow">RESEARCH</p>
           <h2 id="research-tools-title">
-            Tools for fabrication and experimental workflows.
+            Tools for fabrication and optical characterization.
           </h2>
           <p className="lead research-lead">
             Prepare lithography files, model thin-film processing, and fit
-            optical measurements with reproducible, browser-based tools.
+            optical spectra with reproducible, browser-based tools.
           </p>
         </div>
 
@@ -201,18 +201,17 @@ export default function Home() {
             />
             <div className="simulator-heading">
               <span className="number">03</span>
-              <span className="field">Reflectometry · Optical constants</span>
+              <span className="field">Thin-film optics · R/T fitting</span>
             </div>
             <div className="simulator-copy">
               <h2>Reflectometry</h2>
               <p>
-                Fit generic multilayer reflectance and transmittance spectra
-                with independent dielectric models, a dispersive complex
-                substrate, and uncertainty diagnostics.
+                Fit calibrated reflectance and transmittance spectra from
+                coherent multilayer stacks using flexible optical models.
               </p>
             </div>
             <div className="simulator-footer">
-              <span className="detail">JavaScript · Local fitting</span>
+              <span className="detail">TypeScript · Transfer-matrix method</span>
               <a
                 className="source-link"
                 href="https://github.com/jorpago2/reflectometry"
@@ -221,6 +220,24 @@ export default function Home() {
               >
                 Source <span aria-hidden="true">↗</span>
               </a>
+            </div>
+          </article>
+
+          <article className="simulator research-tool soon">
+            <div className="simulator-heading">
+              <span className="number">04</span>
+              <span className="field">More research tools</span>
+            </div>
+            <div className="simulator-copy">
+              <h2>Coming soon</h2>
+              <p>
+                New tools for microfabrication and experimental workflows are
+                currently in development.
+              </p>
+            </div>
+            <div className="simulator-footer">
+              <span className="detail">Fabrication · Modeling · Open source</span>
+              <span className="status">In development</span>
             </div>
           </article>
         </div>

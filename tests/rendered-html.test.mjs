@@ -37,10 +37,12 @@ test("exports the English simulator dashboard", async () => {
   assert.match(html, /class="simulator-link"[^>]*target="_blank"/);
   assert.equal((html.match(/class="simulator-link"/g) ?? []).length, 7);
   assert.match(html, /Coming soon/);
-  assert.equal((html.match(/<h2>Coming soon<\/h2>/g) ?? []).length, 1);
+  assert.equal((html.match(/<h2>Coming soon<\/h2>/g) ?? []).length, 2);
   assert.match(html, /New educational simulators and engineering tools/);
+  assert.match(html, /More research tools/);
+  assert.match(html, /New tools for microfabrication and experimental workflows/);
   assert.match(html, />RESEARCH<\/p>/);
-  assert.match(html, /Tools for fabrication and experimental workflows\./);
+  assert.match(html, /Tools for fabrication and optical characterization\./);
   assert.match(
     html,
     /Prepare lithography files, model thin-film processing/,
@@ -54,10 +56,10 @@ test("exports the English simulator dashboard", async () => {
   assert.match(html, /https:\/\/jorpago2\.github\.io\/spincoatsim\//);
   assert.match(html, /https:\/\/github\.com\/jorpago2\/spincoatsim/);
   assert.match(html, /RPM-calibrated film/);
-  assert.match(html, /Reflectometry · Optical constants/);
+  assert.match(html, /Reflectometry/);
   assert.match(html, /https:\/\/jorpago2\.github\.io\/reflectometry\//);
   assert.match(html, /https:\/\/github\.com\/jorpago2\/reflectometry/);
-  assert.match(html, /dispersive complex/);
+  assert.match(html, /Thin-film optics · R\/T fitting/);
   assert.match(html, /DESKTOP SOFTWARE/);
   assert.match(html, /Laboratory software\./);
   assert.doesNotMatch(html, /Laboratory software for Windows\./);
