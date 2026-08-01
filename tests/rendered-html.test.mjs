@@ -61,7 +61,8 @@ test("exports the English simulator dashboard", async () => {
   assert.match(html, /https:\/\/jorpago2\.github\.io\/reflectometry\//);
   assert.match(html, /https:\/\/github\.com\/jorpago2\/reflectometry/);
   assert.match(html, /Thin-film optics · R\/T fitting/);
-  assert.match(html, /React · TypeScript · Vite/);
+  assert.ok((html.match(/React · TypeScript · Vite/g) ?? []).length >= 4);
+  assert.ok((html.match(/React · TypeScript · Next\.js/g) ?? []).length >= 2);
   assert.match(html, /DESKTOP SOFTWARE/);
   assert.match(html, /Laboratory software\./);
   assert.doesNotMatch(html, /Laboratory software for Windows\./);

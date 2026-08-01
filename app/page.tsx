@@ -7,7 +7,7 @@ const simulators = [
     field: "2D FDTD · Electromagnetics & photonics",
     description:
       "Explore wave propagation, interference, resonators, waveguides, and advanced optical materials through more than 100 interactive scenes.",
-    detail: "JavaScript · WebAssembly",
+    detail: "React · TypeScript · Vite",
     href: "https://jorpago2.github.io/fdtd-2d-simulator/",
     repository: "https://github.com/jorpago2/fdtd-2d-simulator",
     theme: "fdtd",
@@ -18,7 +18,7 @@ const simulators = [
     field: "1D Drift–Diffusion · PN junction",
     description:
       "Solve a silicon PN junction self-consistently with Poisson and carrier-continuity equations, then inspect fields, bands, currents, and convergence.",
-    detail: "JavaScript · Scharfetter–Gummel",
+    detail: "React · TypeScript · Vite",
     href: "https://jorpago2.github.io/drift-difussion-simulator/",
     repository: "https://github.com/jorpago2/drift-difussion-simulator",
     theme: "drift",
@@ -29,7 +29,7 @@ const simulators = [
     field: "Two-port networks · S-parameters",
     description:
       "Build linear RF chains, import Touchstone S2P files, and inspect S-parameters, phase, group delay, mismatch, and internal reflections.",
-    detail: "React · TypeScript · Local-first",
+    detail: "React · TypeScript · Vite",
     href: "https://jorpago2.github.io/rf-web-simulator/",
     repository: "https://github.com/jorpago2/rf-web-simulator",
     theme: "rf",
@@ -141,7 +141,7 @@ export default function Home() {
               </p>
             </div>
             <div className="simulator-footer">
-              <span className="detail">JavaScript · Local processing</span>
+              <span className="detail">React · TypeScript · Next.js</span>
               <a
                 className="source-link"
                 href="https://github.com/jorpago2/gds2goo"
@@ -173,7 +173,7 @@ export default function Home() {
               </p>
             </div>
             <div className="simulator-footer">
-              <span className="detail">TypeScript · Local processing</span>
+              <span className="detail">React · TypeScript · Next.js</span>
               <a
                 className="source-link"
                 href="https://github.com/jorpago2/spincoatsim"
