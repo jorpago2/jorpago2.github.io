@@ -17,6 +17,7 @@ test("exports the English simulator dashboard", async () => {
     access(new URL("../out/rf-simulator-background.webp", import.meta.url)),
     access(new URL("../out/semiconductor-background.webp", import.meta.url)),
     access(new URL("../out/spincoatsim-background.webp", import.meta.url)),
+    access(new URL("../out/waveguide-mode-solver-background.webp", import.meta.url)),
   ]);
 
   assert.match(html, /<title>Online Simulators &amp; Tools<\/title>/);
@@ -28,7 +29,7 @@ test("exports the English simulator dashboard", async () => {
   assert.doesNotMatch(html, /<a[^>]*class="identity"/);
   assert.match(html, /ENGINEERING · PHYSICS · EDUCATION/);
   assert.match(html, /Learn engineering and physics interactively\./);
-  assert.match(html, /Explore electromagnetic waves, RF networks/);
+  assert.match(html, /Explore electromagnetic waves, photonic modes, RF networks/);
   assert.match(html, /Electromagnetic Wave Simulator/);
   assert.match(html, /2D FDTD · Electromagnetics &amp; photonics/);
   assert.match(html, /Semiconductor Device Simulator/);
@@ -36,12 +37,16 @@ test("exports the English simulator dashboard", async () => {
   assert.match(html, /https:\/\/jorpago2\.github\.io\/fdtd-2d-simulator\//);
   assert.match(html, /https:\/\/jorpago2\.github\.io\/drift-difussion-simulator\//);
   assert.match(html, /class="simulator-link"[^>]*target="_blank"/);
-  assert.equal((html.match(/class="simulator-link"/g) ?? []).length, 8);
+  assert.equal((html.match(/class="simulator-link"/g) ?? []).length, 9);
   assert.doesNotMatch(html, /Coming soon/);
   assert.match(html, /RF Network Simulator/);
   assert.match(html, /Two-port networks · S-parameters/);
   assert.match(html, /https:\/\/jorpago2\.github\.io\/rf-web-simulator\//);
   assert.match(html, /https:\/\/github\.com\/jorpago2\/rf-web-simulator/);
+  assert.match(html, /Waveguide Mode Solver/);
+  assert.match(html, /Full-vector FDM · Integrated photonics/);
+  assert.match(html, /https:\/\/jorpago2\.github\.io\/waveguide-mode-solver\//);
+  assert.match(html, /https:\/\/github\.com\/jorpago2\/waveguide-mode-solver/);
   assert.match(html, />RESEARCH<\/p>/);
   assert.match(html, /Tools for fabrication and optical characterization\./);
   assert.match(

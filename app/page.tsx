@@ -34,6 +34,17 @@ const simulators = [
     repository: "https://github.com/jorpago2/rf-web-simulator",
     theme: "rf",
   },
+  {
+    number: "04",
+    title: "Waveguide Mode Solver",
+    field: "Full-vector FDM · Integrated photonics",
+    description:
+      "Calculate hybrid modes of dielectric waveguides, inspect all six electromagnetic field components, and evaluate effective index, confinement, and polarization.",
+    detail: "React · TypeScript · Vite",
+    href: "https://jorpago2.github.io/waveguide-mode-solver/",
+    repository: "https://github.com/jorpago2/waveguide-mode-solver",
+    theme: "waveguide",
+  },
 ] as const;
 
 export default function Home() {
@@ -68,8 +79,8 @@ export default function Home() {
           <p className="eyebrow">ENGINEERING · PHYSICS · EDUCATION</p>
           <h1>Learn engineering and physics interactively.</h1>
           <p className="lead">
-            Explore electromagnetic waves, RF networks, and semiconductor
-            devices with visual, browser-based numerical models.
+            Explore electromagnetic waves, photonic modes, RF networks, and
+            semiconductor devices with visual, browser-based numerical models.
           </p>
         </div>
       </section>
