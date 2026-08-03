@@ -228,6 +228,38 @@ export default function Home() {
             </div>
           </article>
 
+          <article className="simulator research-tool setupsketch">
+            <a
+              className="simulator-link"
+              href="https://jorpago2.github.io/setupsketch/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open SetupSketch in a new tab"
+            />
+            <div className="simulator-heading">
+              <span className="number">04</span>
+              <span className="field">Scientific diagrams · Experimental setups</span>
+            </div>
+            <div className="simulator-copy">
+              <h2>SetupSketch</h2>
+              <p>
+                Build optical, photonic, and electronic setup diagrams with
+                editable components and export them as SVG, PNG, PDF, or JSON.
+              </p>
+            </div>
+            <div className="simulator-footer">
+              <span className="detail">React · TypeScript · Vite</span>
+              <a
+                className="source-link"
+                href="https://github.com/jorpago2/setupsketch"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Source <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </article>
+
         </div>
       </section>
 
