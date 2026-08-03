@@ -413,7 +413,7 @@ h2 {
 }
 
 .research-list {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .desktop-list {
@@ -441,6 +441,12 @@ h2 {
   background-image:
     linear-gradient(90deg, rgba(3, 9, 24, 0.98), rgba(3, 9, 24, 0.84) 52%, rgba(3, 9, 24, 0.24)),
     url("/reflectometry-background.webp");
+}
+
+.simulator.setupsketch {
+  background-image:
+    linear-gradient(90deg, rgba(3, 9, 24, 0.98), rgba(3, 9, 24, 0.84) 52%, rgba(3, 9, 24, 0.24)),
+    url("/setupsketch-background.webp");
 }
 
 .research-tool::before {
