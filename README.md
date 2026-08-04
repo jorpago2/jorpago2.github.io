@@ -5,14 +5,15 @@ Dashboard público de software científico de Jorge Parra: simulación electroma
 ## Desarrollo local
 
 ```powershell
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
 La exportación estática para GitHub Pages se genera con:
 
 ```powershell
-npm run build:pages
+pnpm build
 ```
 
-Los proyectos del dashboard se mantienen en el array `projects` de `app/page.tsx`.
+Los proyectos del dashboard se mantienen en `src/App.tsx`. La compilaciÃ³n genera
+un sitio Vite prerenderizado en `dist/`, sin backend ni servicios externos.

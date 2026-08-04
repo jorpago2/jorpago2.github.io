@@ -1,4 +1,5 @@
-import { DesktopReleaseCard } from "./desktop-release-card";
+import { DesktopReleaseCard } from "./DesktopReleaseCard";
+import "./styles.css";
 
 const simulators = [
   {
@@ -152,7 +153,7 @@ export default function Home() {
               </p>
             </div>
             <div className="simulator-footer">
-              <span className="detail">React · TypeScript · Next.js</span>
+              <span className="detail">React · TypeScript · Vite</span>
               <a
                 className="source-link"
                 href="https://github.com/jorpago2/gds2goo"
@@ -184,7 +185,7 @@ export default function Home() {
               </p>
             </div>
             <div className="simulator-footer">
-              <span className="detail">React · TypeScript · Next.js</span>
+              <span className="detail">React · TypeScript · Vite</span>
               <a
                 className="source-link"
                 href="https://github.com/jorpago2/spincoatsim"

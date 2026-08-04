@@ -1,23 +1,23 @@
 import assert from "node:assert/strict";
 import { access, readFile } from "node:fs/promises";
 import test from "node:test";
-import { selectReleaseAsset } from "../app/github-release.mjs";
+import { selectReleaseAsset } from "../src/github-release.mjs";
 
-const output = new URL("../out/index.html", import.meta.url);
+const output = new URL("../dist/index.html", import.meta.url);
 
 test("exports the English simulator dashboard", async () => {
   const html = await readFile(output, "utf8");
 
   await Promise.all([
-    access(new URL("../out/fdtd-background.webp", import.meta.url)),
-    access(new URL("../out/gds2goo-background.webp", import.meta.url)),
-    access(new URL("../out/pcmwriter-background.webp", import.meta.url)),
-    access(new URL("../out/picbench-background.webp", import.meta.url)),
-    access(new URL("../out/reflectometry-background.webp", import.meta.url)),
-    access(new URL("../out/rf-simulator-background.webp", import.meta.url)),
-    access(new URL("../out/semiconductor-background.webp", import.meta.url)),
-    access(new URL("../out/spincoatsim-background.webp", import.meta.url)),
-    access(new URL("../out/waveguide-mode-solver-background.webp", import.meta.url)),
+    access(new URL("../dist/fdtd-background.webp", import.meta.url)),
+    access(new URL("../dist/gds2goo-background.webp", import.meta.url)),
+    access(new URL("../dist/pcmwriter-background.webp", import.meta.url)),
+    access(new URL("../dist/picbench-background.webp", import.meta.url)),
+    access(new URL("../dist/reflectometry-background.webp", import.meta.url)),
+    access(new URL("../dist/rf-simulator-background.webp", import.meta.url)),
+    access(new URL("../dist/semiconductor-background.webp", import.meta.url)),
+    access(new URL("../dist/spincoatsim-background.webp", import.meta.url)),
+    access(new URL("../dist/waveguide-mode-solver-background.webp", import.meta.url)),
   ]);
 
   assert.match(html, /<title>Online Simulators &amp; Tools<\/title>/);
@@ -37,7 +37,7 @@ test("exports the English simulator dashboard", async () => {
   assert.match(html, /https:\/\/jorpago2\.github\.io\/fdtd-2d-simulator\//);
   assert.match(html, /https:\/\/jorpago2\.github\.io\/drift-difussion-simulator\//);
   assert.match(html, /class="simulator-link"[^>]*target="_blank"/);
-  assert.equal((html.match(/class="simulator-link"/g) ?? []).length, 9);
+  assert.equal((html.match(/class="simulator-link"/g) ?? []).length, 10);
   assert.doesNotMatch(html, /Coming soon/);
   assert.match(html, /RF Network Simulator/);
   assert.match(html, /Two-port networks · S-parameters/);
@@ -66,8 +66,8 @@ test("exports the English simulator dashboard", async () => {
   assert.match(html, /https:\/\/jorpago2\.github\.io\/reflectometry\//);
   assert.match(html, /https:\/\/github\.com\/jorpago2\/reflectometry/);
   assert.match(html, /Thin-film optics · R\/T fitting/);
-  assert.ok((html.match(/React · TypeScript · Vite/g) ?? []).length >= 4);
-  assert.ok((html.match(/React · TypeScript · Next\.js/g) ?? []).length >= 2);
+  assert.ok((html.match(/React · TypeScript · Vite/g) ?? []).length >= 6);
+  assert.doesNotMatch(html, /Next\.js/);
   assert.match(html, /DESKTOP SOFTWARE/);
   assert.match(html, /Laboratory software\./);
   assert.doesNotMatch(html, /Laboratory software for Windows\./);
