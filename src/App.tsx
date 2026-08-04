@@ -50,7 +50,9 @@ const simulators = [
 
 export default function Home() {
   return (
-    <main>
+    <>
+    <a className="skip-link" href="#main-content">Skip to tools</a>
+    <main id="main-content" tabIndex={-1}>
       <header>
         <div className="identity">
           <img
@@ -329,5 +331,6 @@ export default function Home() {
         </div>
       </footer>
     </main>
+    </>
   );
 }

@@ -29,6 +29,8 @@ test("exports the English simulator dashboard", async () => {
   assert.doesNotMatch(html, /<a[^>]*class="identity"/);
   assert.match(html, /ENGINEERING · PHYSICS · EDUCATION/);
   assert.match(html, /Learn engineering and physics interactively\./);
+  assert.match(html, /class="skip-link" href="#main-content"/);
+  assert.match(html, /<main id="main-content" tabindex="-1">/);
   assert.match(html, /Explore electromagnetic waves, photonic modes, RF networks/);
   assert.match(html, /Electromagnetic Wave Simulator/);
   assert.match(html, /2D FDTD · Electromagnetics &amp; photonics/);

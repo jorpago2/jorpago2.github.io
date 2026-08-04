@@ -84,6 +84,19 @@ a:focus-visible {
   outline-offset: 4px;
 }
 
+.skip-link {
+  position: fixed;
+  z-index: 100;
+  top: 8px;
+  left: 8px;
+  padding: 10px 14px;
+  background: var(--ink);
+  color: white;
+  transform: translateY(-150%);
+}
+
+.skip-link:focus { transform: translateY(0); }
+
 main {
   position: relative;
   z-index: 1;
@@ -145,7 +158,10 @@ header {
 }
 
 .header-link {
+  min-height: 36px;
   padding: 11px 15px;
+  display: inline-flex;
+  align-items: center;
   border: 1px solid var(--line);
   border-radius: 999px;
   background: var(--surface);
@@ -714,7 +730,9 @@ h2 {
   }
 
   .header-link {
+    min-height: 44px;
     padding: 3px 0;
+    justify-content: center;
     border: 0;
     border-radius: 0;
     background: transparent;
