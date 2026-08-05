@@ -15,5 +15,9 @@ La exportación estática para GitHub Pages se genera con:
 pnpm build
 ```
 
-Los proyectos del dashboard se mantienen en `src/App.tsx`. La compilaciÃ³n genera
+Los proyectos del dashboard se mantienen en `src/App.tsx`. La compilación genera
 un sitio Vite prerenderizado en `dist/`, sin backend ni servicios externos.
+
+## Contrato de interfaz
+
+Las reglas comunes de navegación, accesibilidad, estados y responsive se documentan en [`docs/interface-contract.md`](docs/interface-contract.md).
