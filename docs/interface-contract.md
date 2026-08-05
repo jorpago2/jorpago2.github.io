@@ -46,6 +46,9 @@ Las aplicaciones conservan un color de acento y recursos gráficos propios, pero
 ## Controles y jerarquía
 
 - Cada contexto tiene una acción primaria inequívoca; las acciones secundarias no compiten visualmente con ella.
+- La vista inicial muestra solo el contexto mínimo, las entradas esenciales y la siguiente acción. Capacidades, parámetros avanzados, diagnósticos y exportaciones se revelan mediante pestañas, paneles contextuales o desplegables nativos.
+- Las herramientas no ejecutan cálculos ni muestran resultados de ejemplo al abrirse. Los ejemplos se cargan mediante una acción explícita y claramente identificada.
+- Las portadas promocionales se reservan para el Dashboard y la web personal. Una herramienta comienza con una cabecera de trabajo compacta y da acceso a su alcance o metodología bajo demanda.
 - Las acciones destructivas se separan de las frecuentes, se nombran de forma explícita y piden confirmación cuando la pérdida no es recuperable.
 - Un control deshabilitado conserva su etiqueta y comunica la razón cerca del control cuando no sea evidente.
 - Toolbars densas pueden agrupar exportaciones o acciones infrecuentes, pero no esconder la ejecución principal, el estado ni la navegación al Dashboard.
