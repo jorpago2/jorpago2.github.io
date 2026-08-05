@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { access, readFile } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 import { selectReleaseAsset } from "../src/github-release.mjs";
 
@@ -7,18 +7,6 @@ const output = new URL("../dist/index.html", import.meta.url);
 
 test("exports the English simulator dashboard", async () => {
   const html = await readFile(output, "utf8");
-
-  await Promise.all([
-    access(new URL("../dist/fdtd-background.webp", import.meta.url)),
-    access(new URL("../dist/gds2goo-background.webp", import.meta.url)),
-    access(new URL("../dist/pcmwriter-background.webp", import.meta.url)),
-    access(new URL("../dist/picbench-background.webp", import.meta.url)),
-    access(new URL("../dist/reflectometry-background.webp", import.meta.url)),
-    access(new URL("../dist/rf-simulator-background.webp", import.meta.url)),
-    access(new URL("../dist/semiconductor-background.webp", import.meta.url)),
-    access(new URL("../dist/spincoatsim-background.webp", import.meta.url)),
-    access(new URL("../dist/waveguide-mode-solver-background.webp", import.meta.url)),
-  ]);
 
   assert.match(html, /<title>Online Simulators &amp; Tools<\/title>/);
   for (const metadata of [
@@ -35,10 +23,9 @@ test("exports the English simulator dashboard", async () => {
   assert.match(html, /href="https:\/\/github\.com\/jorpago2"[^>]*>GitHub/);
   assert.match(html, /href="https:\/\/www\.uv\.es\/jorpago2"[^>]*>Webpage/);
   assert.doesNotMatch(html, /<a[^>]*class="identity"/);
-  assert.match(html, /ENGINEERING · PHYSICS · EDUCATION/);
   assert.match(html, /Learn engineering and physics interactively\./);
-  assert.match(html, /class="skip-link" href="#main-content"/);
-  assert.match(html, /<main id="main-content" tabindex="-1">/);
+  assert.match(html, /class="skip-link" href="#tool-index"/);
+  assert.match(html, /id="tool-index" tabindex="-1"/);
   assert.match(html, /Explore electromagnetic waves, photonic modes, RF networks/);
   assert.match(html, /Electromagnetic Wave Simulator/);
   assert.match(html, /2D FDTD · Electromagnetics &amp; photonics/);
@@ -46,8 +33,11 @@ test("exports the English simulator dashboard", async () => {
   assert.match(html, /1D Drift–Diffusion · PN junction/);
   assert.match(html, /https:\/\/jorpago2\.github\.io\/fdtd-2d-simulator\//);
   assert.match(html, /https:\/\/jorpago2\.github\.io\/drift-difussion-simulator\//);
-  assert.match(html, /class="simulator-link"[^>]*target="_blank"/);
-  assert.equal((html.match(/class="simulator-link"/g) ?? []).length, 10);
+  assert.equal(
+    (html.match(/class="action-link action-link-primary"/g) ?? []).length,
+    10,
+  );
+  assert.equal((html.match(/<details class="tool-details">/g) ?? []).length, 10);
   assert.doesNotMatch(html, /Coming soon/);
   assert.match(html, /RF Network Simulator/);
   assert.match(html, /Two-port networks · S-parameters/);
@@ -57,8 +47,7 @@ test("exports the English simulator dashboard", async () => {
   assert.match(html, /Full-vector FDM · Integrated photonics/);
   assert.match(html, /https:\/\/jorpago2\.github\.io\/waveguide-mode-solver\//);
   assert.match(html, /https:\/\/github\.com\/jorpago2\/waveguide-mode-solver/);
-  assert.match(html, />RESEARCH<\/p>/);
-  assert.match(html, /Tools for fabrication and optical characterization\./);
+  assert.match(html, /<h2 id="research-tools-title">Research tools<\/h2>/);
   assert.match(
     html,
     /Prepare lithography files, model thin-film processing/,
@@ -78,8 +67,7 @@ test("exports the English simulator dashboard", async () => {
   assert.match(html, /Thin-film optics · R\/T fitting/);
   assert.ok((html.match(/React · TypeScript · Vite/g) ?? []).length >= 6);
   assert.doesNotMatch(html, /Next\.js/);
-  assert.match(html, /DESKTOP SOFTWARE/);
-  assert.match(html, /Laboratory software\./);
+  assert.match(html, /<h2 id="desktop-tools-title">Laboratory software<\/h2>/);
   assert.doesNotMatch(html, /Laboratory software for Windows\./);
   assert.match(html, /PCMWriter/);
   assert.match(html, /PICBench/);
@@ -90,6 +78,8 @@ test("exports the English simulator dashboard", async () => {
   assert.match(html, /Built for open research and hands-on learning\./);
   assert.match(html, /aria-label="Footer links"/);
   assert.match(html, /href="#top">Back to top/);
+  assert.doesNotMatch(html, /class="eyebrow"/);
+  assert.doesNotMatch(html, /class="simulator-link"/);
   assert.doesNotMatch(html, /Open simulator/);
   assert.doesNotMatch(html, /Explorar|Proyectos/);
 });

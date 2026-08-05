@@ -13,7 +13,6 @@ type DesktopReleaseCardProps = {
   assetExtension: string;
   fallbackVersion: string;
   fallbackUrl: string;
-  theme: string;
 };
 
 type GithubRelease = {
@@ -31,7 +30,6 @@ export function DesktopReleaseCard({
   assetExtension,
   fallbackVersion,
   fallbackUrl,
-  theme,
 }: DesktopReleaseCardProps) {
   const [release, setRelease] = useState({
     version: fallbackVersion,
@@ -75,34 +73,40 @@ export function DesktopReleaseCard({
   }, [assetExtension, repository]);
 
   return (
-    <article className={`simulator desktop-tool ${theme}`}>
-      <a
-        className="simulator-link"
-        href={release.url}
-        download
-        aria-label={`Download ${title} ${release.version} for Windows`}
-      />
-      <div className="simulator-heading">
-        <span className="number">{number}</span>
-        <span className="field">Windows x64 · Direct download</span>
+    <article className="tool-row">
+      <span className="tool-number" aria-hidden="true">
+        {number}
+      </span>
+      <div className="tool-core">
+        <p className="tool-field">Windows x64 · Direct download</p>
+        <h3>{title}</h3>
+        <div className="tool-actions">
+          <a
+            className="action-link action-link-primary"
+            href={release.url}
+            download
+            aria-label={`Download ${title} ${release.version} for Windows`}
+          >
+            Download {format} <span aria-hidden="true">↓</span>
+          </a>
+          <a
+            className="action-link"
+            href={`https://github.com/${repository}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Open the ${title} source code in a new tab`}
+          >
+            Source <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <details className="tool-details">
+          <summary>About</summary>
+          <p>{description}</p>
+        </details>
       </div>
-      <div className="simulator-copy">
-        <h2>{title}</h2>
-        <p>{description}</p>
-      </div>
-      <div className="simulator-footer">
-        <span className="detail">
-          {technology} · {release.version} · {format}
-        </span>
-        <a
-          className="source-link"
-          href={`https://github.com/${repository}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Source <span aria-hidden="true">↗</span>
-        </a>
-      </div>
+      <p className="tool-technology" aria-live="polite">
+        {technology} · {release.version} · {format}
+      </p>
     </article>
   );
 }
