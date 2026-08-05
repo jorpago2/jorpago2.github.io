@@ -4,7 +4,20 @@ Estado: activo. Aplica al Dashboard, la web personal y las herramientas científ
 
 ## Objetivo
 
-Las aplicaciones pueden conservar su identidad visual, pero deben compartir navegación, semántica, accesibilidad y comportamiento responsive. Este contrato evita una librería de componentes común: cada repositorio lo implementa con su stack actual.
+Las aplicaciones conservan un color de acento y recursos gráficos propios, pero comparten una base visual, navegación, semántica, accesibilidad y comportamiento responsive. Este contrato evita una librería de componentes común: cada repositorio lo implementa con CSS local y su stack actual.
+
+## Lenguaje visual común
+
+| Elemento | Regla visual |
+| --- | --- |
+| Tipografía | Inter, Aptos o la sans-serif del sistema. La tipografía monoespaciada se reserva para datos, unidades y código. |
+| Neutros | Tinta `#141713`, texto secundario `#697068`, fondo `#f6f7f3`, superficie blanca y borde `#d8dcd5`. Los lienzos científicos pueden ajustar el fondo para mejorar la lectura. |
+| Acento | Cada aplicación conserva un único acento reconocible. Se usa en la acción primaria, el foco, la selección activa y detalles de marca; no sustituye a etiquetas de estado. |
+| Geometría | Controles con radio de 8 px, paneles de 14–16 px y píldoras solo para estados o acciones compactas. |
+| Cabecera | Superficie clara, borde inferior fino, marca a la izquierda y `All tools`, ayuda y estado/contexto a la derecha. Las herramientas pueden usar una segunda fila para navegación o proyectos densos. |
+| Acciones | La primaria usa el acento y peso alto; las secundarias usan superficie blanca y borde neutro. Altura mínima: 36 px en escritorio y 44 px en viewport estrecho. |
+| Campos | Fondo blanco, borde neutro, radio de 8 px, etiqueta visible y aro de foco derivado del acento. |
+| Elevación | Las sombras se reservan para paneles flotantes, menús y superficies que realmente se superponen. |
 
 ## Reglas obligatorias
 
@@ -26,7 +39,7 @@ Las aplicaciones pueden conservar su identidad visual, pero deben compartir nave
 - Las acciones destructivas se separan de las frecuentes, se nombran de forma explícita y piden confirmación cuando la pérdida no es recuperable.
 - Un control deshabilitado conserva su etiqueta y comunica la razón cerca del control cuando no sea evidente.
 - Toolbars densas pueden agrupar exportaciones o acciones infrecuentes, pero no esconder la ejecución principal, el estado ni la navegación al Dashboard.
-- Los valores repetidos de color, espaciado, borde y sombra se definen como variables CSS locales. No se exige una paleta común.
+- Los valores repetidos de color, espaciado, borde y sombra se definen como variables CSS locales siguiendo el lenguaje visual común.
 
 ## Estados de aplicación
 
