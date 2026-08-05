@@ -21,6 +21,14 @@ test("exports the English simulator dashboard", async () => {
   ]);
 
   assert.match(html, /<title>Online Simulators &amp; Tools<\/title>/);
+  for (const metadata of [
+    'name="description"',
+    'name="theme-color"',
+    'rel="canonical" href="https://jorpago2.github.io/"',
+    'property="og:site_name"',
+    'property="og:url" content="https://jorpago2.github.io/"',
+    'name="twitter:image:alt"',
+  ]) assert.match(html, new RegExp(metadata));
   assert.match(html, /Assistant Professor at University of Valencia · Photonics · Electronics/);
   assert.match(html, /avatars\.githubusercontent\.com\/u\/297438018\?v=4/);
   assert.match(html, /<link rel="icon" href="\/favicon\.svg"/);
