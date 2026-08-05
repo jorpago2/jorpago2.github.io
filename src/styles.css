@@ -758,12 +758,14 @@ h2 {
   }
 
   h1 {
-    margin-bottom: 0;
+    margin-bottom: 14px;
     font-size: 36px;
   }
 
   .lead {
-    display: none;
+    display: block;
+    font-size: 15px;
+    line-height: 1.45;
   }
 
   .research-lead,
