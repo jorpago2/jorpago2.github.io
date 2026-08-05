@@ -759,7 +759,6 @@ h2 {
 
   h1 {
     margin-bottom: 14px;
-    font-size: 36px;
   }
 
   .lead {
@@ -803,7 +802,11 @@ h2 {
 
   h2 {
     margin-bottom: 0;
-    font-size: clamp(27px, 8vw, 32px);
+  }
+
+  h1,
+  h2 {
+    font-size: 30px;
   }
 
   .simulator-footer {
@@ -818,11 +821,6 @@ h2 {
   .research-heading,
   .desktop-heading {
     margin-bottom: 12px;
-  }
-
-  .research-heading h2,
-  .desktop-heading h2 {
-    font-size: 30px;
   }
 
   .simulator.research-tool,
