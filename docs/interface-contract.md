@@ -73,6 +73,17 @@ Los cambios de estado se anuncian mediante un elemento de estado nativo o una re
 - Las hipótesis del modelo y el alcance se pueden consultar sin abandonar el workspace.
 - El procesamiento local se indica cuando sea cierto; no se promete privacidad local si existe transmisión de datos.
 
+### Visualización científica
+
+| Elemento | Regla común |
+| --- | --- |
+| Paleta | Series categóricas con la paleta accesible azul `#0072b2`, naranja `#d55e00`, verde `#009e73` y magenta `#cc79a7`; además del color, las series se distinguen mediante trazo o marcador. |
+| Ejes | Fondo blanco o transparente sobre superficie blanca, rejilla `#e7edef`, eje `#9fb0b5`, texto `#40555c` y unidad incluida en el título. |
+| Leyenda | Horizontal sobre la gráfica cuando haya espacio; en móvil se adapta sin comprimir el área de datos. Se oculta si solo existe una serie inequívoca. |
+| Inspección | El cursor muestra magnitud, unidad y coordenada con precisión útil. Zoom y desplazamiento no alteran los datos y ofrecen una forma visible de restablecer la vista. |
+| Escalas de color | Secuenciales perceptualmente uniformes; divergentes centradas explícitamente en cero. No se usa arcoíris para magnitudes escalares. |
+| Exportación | SVG para curvas y diagramas vectoriales; PNG para mapas rasterizados. La exportación conserva nombres de ejes, unidades y leyenda. |
+
 ## Criterio de finalización
 
 Antes de publicar un cambio de interfaz:
