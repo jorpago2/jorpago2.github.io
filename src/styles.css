@@ -9,6 +9,7 @@
   --violet: #c7b8ff;
   --font-display: "Space Grotesk", Arial, sans-serif;
   --font-body: "IBM Plex Sans", Arial, sans-serif;
+  --heading-size: clamp(34px, 4vw, 52px);
 }
 
 * {
@@ -212,7 +213,7 @@ p {
 h1 {
   max-width: 880px;
   margin-bottom: 20px;
-  font-size: clamp(44px, 6vw, 76px);
+  font-size: var(--heading-size);
   font-family: var(--font-display);
   line-height: 1.02;
   letter-spacing: -0.045em;
@@ -359,7 +360,7 @@ h1 {
 h2 {
   max-width: 460px;
   margin-bottom: 18px;
-  font-size: clamp(34px, 4vw, 52px);
+  font-size: var(--heading-size);
   font-family: var(--font-display);
   line-height: 1.05;
   letter-spacing: -0.025em;
@@ -431,7 +432,6 @@ h2 {
 .desktop-heading h2 {
   max-width: 680px;
   margin-bottom: 14px;
-  font-size: clamp(32px, 4vw, 48px);
 }
 
 .research-lead,
@@ -644,7 +644,6 @@ h2 {
 
   h1 {
     margin-bottom: 14px;
-    font-size: clamp(40px, 5vw, 60px);
   }
 
   .simulator-list {
@@ -667,7 +666,6 @@ h2 {
 
   h2 {
     margin-bottom: 14px;
-    font-size: clamp(30px, 3vw, 42px);
   }
 
   .simulator-footer {
