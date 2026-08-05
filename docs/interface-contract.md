@@ -19,6 +19,16 @@ Las aplicaciones conservan un color de acento y recursos gráficos propios, pero
 | Campos | Fondo blanco, borde neutro, radio de 8 px, etiqueta visible y aro de foco derivado del acento. |
 | Elevación | Las sombras se reservan para paneles flotantes, menús y superficies que realmente se superponen. |
 
+### Jerarquía del workspace
+
+| Patrón | Regla visual |
+| --- | --- |
+| Panel principal | Superficie blanca, borde neutro y radio de 14 px. Los paneles anidados no añaden otra sombra. |
+| Métrica | Etiqueta secundaria, valor prominente con cifras tabulares y unidad separada. Un borde superior con el acento identifica la familia sin codificar el estado. |
+| Mensaje | Borde izquierdo de 3 px, fondo semántico suave y texto explícito. Éxito, aviso y error comparten significado entre aplicaciones. |
+| Toolbar científica | Controles relacionados dentro de una superficie suave con borde único; la opción activa usa el acento. En móvil puede desplazarse horizontalmente sin provocar overflow de página. |
+| Vacío o carga | Explica qué falta o está ocurriendo y, cuando proceda, cuál es la siguiente acción. No depende solo de una ilustración o spinner. |
+
 ## Reglas obligatorias
 
 | Área | Regla | Comprobación mínima |
