@@ -7,6 +7,8 @@ const output = new URL("../dist/index.html", import.meta.url);
 
 test("exports the English simulator dashboard", async () => {
   const html = await readFile(output, "utf8");
+  const source = await readFile(new URL("../src/App.tsx", import.meta.url), "utf8");
+  const styles = await readFile(new URL("../src/styles.css", import.meta.url), "utf8");
 
   await Promise.all([
     access(new URL("../dist/fdtd-background.webp", import.meta.url)),
@@ -38,7 +40,11 @@ test("exports the English simulator dashboard", async () => {
   assert.match(html, /ENGINEERING · PHYSICS · EDUCATION/);
   assert.match(html, /Learn engineering and physics interactively\./);
   assert.match(html, /class="skip-link" href="#main-content"/);
-  assert.match(html, /<main id="main-content" tabindex="-1">/);
+  assert.match(html, /<main[^>]*id="main-content"[^>]*tabindex="-1">/);
+  assert.match(styles, /tailwindcss\/utilities\.css/);
+  assert.match(styles, /@theme inline/);
+  assert.doesNotMatch(styles, /tailwindcss\/preflight|@import\s+["']tailwindcss["']/);
+  assert.match(source, /bg-ui-canvas/);
   assert.match(html, /Explore electromagnetic waves, photonic modes, RF networks/);
   assert.match(html, /Electromagnetic Wave Simulator/);
   assert.match(html, /2D FDTD · Electromagnetics &amp; photonics/);

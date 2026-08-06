@@ -1,3 +1,7 @@
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
 :root {
   --ink: #141713;
   --muted: #697068;
@@ -10,6 +14,30 @@
   --font-display: "Space Grotesk", Arial, sans-serif;
   --font-body: "IBM Plex Sans", Arial, sans-serif;
   --heading-size: clamp(34px, 4vw, 52px);
+  --focus: #5c7e00;
+  --danger: #a33a32;
+  --success: #397b55;
+  --radius-control: 0.5rem;
+  --radius-panel: 0.875rem;
+}
+
+@theme inline {
+  --color-ui-canvas: var(--paper);
+  --color-ui-canvas-muted: var(--paper);
+  --color-ui-surface: var(--surface);
+  --color-ui-surface-raised: var(--surface);
+  --color-ui-ink: var(--ink);
+  --color-ui-muted: var(--muted);
+  --color-ui-border: var(--line);
+  --color-ui-border-strong: var(--muted);
+  --color-ui-accent: var(--lime);
+  --color-ui-focus: var(--focus);
+  --color-ui-danger: var(--danger);
+  --color-ui-success: var(--success);
+  --font-ui-body: var(--font-body);
+  --font-ui-display: var(--font-display);
+  --radius-ui-control: var(--radius-control);
+  --radius-ui-panel: var(--radius-panel);
 }
 
 * {
@@ -100,30 +128,6 @@ a:focus-visible {
 
 .skip-link:focus { transform: translateY(0); }
 
-main {
-  position: relative;
-  z-index: 1;
-  width: min(1240px, 100%);
-  min-height: 100vh;
-  margin: 0 auto;
-  padding: 0 40px;
-}
-
-header {
-  min-height: 112px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 32px;
-  border-bottom: 1px solid var(--line);
-}
-
-.identity {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  min-width: 0;
-}
 
 .avatar {
   flex: 0 0 auto;
@@ -155,14 +159,8 @@ header {
   line-height: 1.4;
 }
 
-.header-links {
-  display: flex;
-  flex: 0 0 auto;
-  gap: 8px;
-}
-
 .header-link {
-  min-height: 36px;
+  min-height: 44px;
   padding: 11px 15px;
   display: inline-flex;
   align-items: center;
@@ -179,9 +177,6 @@ header {
   text-underline-offset: 4px;
 }
 
-.intro {
-  padding: 70px 0 52px;
-}
 
 .section-heading {
   padding-left: 18px;
@@ -226,12 +221,6 @@ h1 {
   line-height: 1.5;
 }
 
-.simulator-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-  padding-bottom: 72px;
-}
 
 .simulator {
   position: relative;
@@ -438,20 +427,6 @@ h2 {
 .desktop-lead {
   max-width: 680px;
   font-size: 15px;
-}
-
-.research-list,
-.desktop-list {
-  display: grid;
-  gap: 16px;
-}
-
-.research-list {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.desktop-list {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .simulator.research-tool,
@@ -863,3 +838,7 @@ h2 {
     animation: none;
   }
 }
+.identity { min-width: 0; }
+
+.header-links { flex: 0 0 auto; }
+.site-header { border-bottom: 1px solid var(--line); }
