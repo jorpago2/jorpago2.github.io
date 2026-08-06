@@ -1,5 +1,5 @@
+import { Column, Grid } from "@carbon/react";
 import { DesktopReleaseCard } from "./DesktopReleaseCard";
-import "./styles.css";
 
 const simulators = [
   {
@@ -52,9 +52,10 @@ export default function Home() {
   return (
     <>
     <a className="skip-link" href="#main-content">Skip to tools</a>
-    <main className="relative z-1 mx-auto min-h-dvh w-full max-w-310 bg-ui-canvas px-10 font-ui-body text-ui-ink" id="main-content" tabIndex={-1}>
-      <header className="site-header flex min-h-28 items-center justify-between gap-8">
-        <div className="identity flex items-center gap-4">
+    <Grid as="main" fullWidth condensed className="site-shell" id="main-content" tabIndex={-1}>
+      <Column sm={4} md={8} lg={16} className="site-shell-column">
+      <header className="site-header">
+        <div className="identity">
           <img
             className="avatar"
             src="https://avatars.githubusercontent.com/u/297438018?v=4"
@@ -67,7 +68,7 @@ export default function Home() {
             <small>Assistant Professor at University of Valencia · Photonics · Electronics</small>
           </span>
         </div>
-        <nav className="header-links flex gap-2" aria-label="Profile links">
+        <nav className="header-links" aria-label="Profile links">
           <a className="header-link" href="https://github.com/jorpago2">
             GitHub <span aria-hidden="true">↗</span>
           </a>
@@ -77,7 +78,7 @@ export default function Home() {
         </nav>
       </header>
 
-      <section className="intro pt-17.5 pb-13" id="top">
+      <section className="intro" id="top">
         <div className="section-heading education-heading">
           <p className="eyebrow">ENGINEERING · PHYSICS · EDUCATION</p>
           <h1>Learn engineering and physics interactively.</h1>
@@ -88,7 +89,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="simulator-list grid grid-cols-2 gap-4 pb-18" aria-label="Available simulators">
+      <section className="simulator-list" aria-label="Available simulators">
         {simulators.map((simulator) => (
           <article className={`simulator ${simulator.theme}`} key={simulator.title}>
             <a
@@ -133,7 +134,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="research-list grid grid-cols-2 gap-4">
+        <div className="research-list">
           <article className="simulator research-tool gds2goo">
             <a
               className="simulator-link"
@@ -276,7 +277,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="desktop-list grid grid-cols-2 gap-4">
+        <div className="desktop-list">
           <DesktopReleaseCard
             number="01"
             title="PCMWriter"
@@ -330,7 +331,8 @@ export default function Home() {
           <p className="footer-location">Jorge Parra · Valencia, Spain · 2026</p>
         </div>
       </footer>
-    </main>
+      </Column>
+    </Grid>
     </>
   );
 }

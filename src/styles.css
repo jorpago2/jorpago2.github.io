@@ -1,48 +1,34 @@
-@layer theme, base, components, utilities;
-@import "tailwindcss/theme.css" layer(theme);
-@import "tailwindcss/utilities.css" layer(utilities);
-
 :root {
-  --ink: #141713;
-  --muted: #697068;
-  --paper: #f6f7f3;
-  --surface: #ffffff;
-  --line: #d8dcd5;
+  --ink: var(--cds-text-primary);
+  --muted: var(--cds-text-secondary);
+  --paper: var(--cds-background);
+  --surface: var(--cds-layer-01);
+  --line: var(--cds-border-subtle);
   --lime: #d8ff54;
   --blue: #b9d7ff;
   --violet: #c7b8ff;
-  --font-display: "Space Grotesk", Arial, sans-serif;
-  --font-body: "IBM Plex Sans", Arial, sans-serif;
+  --font-display: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
   --heading-size: clamp(34px, 4vw, 52px);
-  --focus: #5c7e00;
-  --danger: #a33a32;
-  --success: #397b55;
-  --radius-control: 0.5rem;
-  --radius-panel: 0.875rem;
-}
-
-@theme inline {
-  --color-ui-canvas: var(--paper);
-  --color-ui-canvas-muted: var(--paper);
-  --color-ui-surface: var(--surface);
-  --color-ui-surface-raised: var(--surface);
-  --color-ui-ink: var(--ink);
-  --color-ui-muted: var(--muted);
-  --color-ui-border: var(--line);
-  --color-ui-border-strong: var(--muted);
-  --color-ui-accent: var(--lime);
-  --color-ui-focus: var(--focus);
-  --color-ui-danger: var(--danger);
-  --color-ui-success: var(--success);
-  --font-ui-body: var(--font-body);
-  --font-ui-display: var(--font-display);
-  --radius-ui-control: var(--radius-control);
-  --radius-ui-panel: var(--radius-panel);
+  --focus: var(--cds-focus);
+  --danger: var(--cds-support-error);
+  --success: var(--cds-support-success);
+  --radius-control: 0;
+  --radius-panel: 0;
 }
 
 * {
   box-sizing: border-box;
 }
+
+.site-shell.cds--grid { position: relative; z-index: 1; min-height: 100dvh; width: 100%; max-width: 77.5rem; margin-inline: auto; padding-inline: 2.5rem; background: var(--paper); color: var(--ink); font-family: var(--font-body); }
+.site-shell-column { min-width: 0; max-width: none; padding: 0; }
+.site-header { min-height: 7rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+.identity { display: flex; align-items: center; gap: 1rem; }
+.header-links { display: flex; gap: .5rem; }
+.intro { padding-block: 4.375rem 3.25rem; }
+.simulator-list, .research-list, .desktop-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.simulator-list { padding-bottom: 4.5rem; }
 
 h1,
 h2,
@@ -595,7 +581,7 @@ h2 {
 }
 
 @media (min-width: 821px) {
-  main {
+  .site-shell.cds--grid {
     display: grid;
     grid-template-rows: auto auto 1fr auto auto;
   }
@@ -675,7 +661,7 @@ h2 {
     display: grid;
     grid-template-rows: auto auto 1fr;
     min-height: 100svh;
-    padding: 0 16px;
+    padding-inline: 16px;
   }
 
   header {

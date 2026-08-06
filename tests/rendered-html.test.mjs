@@ -41,10 +41,10 @@ test("exports the English simulator dashboard", async () => {
   assert.match(html, /Learn engineering and physics interactively\./);
   assert.match(html, /class="skip-link" href="#main-content"/);
   assert.match(html, /<main[^>]*id="main-content"[^>]*tabindex="-1">/);
-  assert.match(styles, /tailwindcss\/utilities\.css/);
-  assert.match(styles, /@theme inline/);
-  assert.doesNotMatch(styles, /tailwindcss\/preflight|@import\s+["']tailwindcss["']/);
-  assert.match(source, /bg-ui-canvas/);
+  const carbon = await readFile(new URL("../src/carbon.scss", import.meta.url), "utf8");
+  assert.match(carbon, /@use ["']@carbon\/react["']/);
+  assert.doesNotMatch(styles, /tailwindcss|@theme inline/);
+  assert.match(source, /<Grid as="main"/);
   assert.match(html, /Explore electromagnetic waves, photonic modes, RF networks/);
   assert.match(html, /Electromagnetic Wave Simulator/);
   assert.match(html, /2D FDTD · Electromagnetics &amp; photonics/);
