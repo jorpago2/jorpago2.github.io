@@ -13,7 +13,9 @@
     "test": "pnpm build && node --test tests/rendered-html.test.mjs",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@carbon/react": "1.113.0",
@@ -34,6 +36,9 @@
     "sass": "1.102.0",
     "typescript": "6.0.2",
     "typescript-eslint": "8.65.0",
-    "vite": "8.2.0"
+    "vite": "8.2.0",
+    "storybook": "^10.5.7",
+    "@storybook/react-vite": "^10.5.7",
+    "eslint-plugin-storybook": "^10.5.7"
   }
 }

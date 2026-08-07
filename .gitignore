@@ -31,3 +31,6 @@ yarn-error.log*
 /.ssr/
 /outputs/
 /work/
+
+*storybook.log
+storybook-static
