@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Button, Link, Tag, Tile } from "@carbon/react";
 import { selectReleaseAsset } from "./github-release.mjs";
 
 type DesktopReleaseCardProps = {
+  number: string;
   title: string;
   description: string;
   technology: string;
@@ -13,6 +13,7 @@ type DesktopReleaseCardProps = {
   assetExtension: string;
   fallbackVersion: string;
   fallbackUrl: string;
+  theme: string;
 };
 
 type GithubRelease = {
@@ -21,6 +22,7 @@ type GithubRelease = {
 };
 
 export function DesktopReleaseCard({
+  number,
   title,
   description,
   technology,
@@ -29,6 +31,7 @@ export function DesktopReleaseCard({
   assetExtension,
   fallbackVersion,
   fallbackUrl,
+  theme,
 }: DesktopReleaseCardProps) {
   const [release, setRelease] = useState({
     version: fallbackVersion,
@@ -51,7 +54,10 @@ export function DesktopReleaseCard({
         if (!response.ok) return;
 
         const latest = (await response.json()) as GithubRelease;
-        const asset = selectReleaseAsset(latest.assets ?? [], assetExtension);
+        const asset = selectReleaseAsset(
+          latest.assets ?? [],
+          assetExtension,
+        );
 
         if (latest.tag_name && asset) {
           setRelease({
@@ -69,26 +75,34 @@ export function DesktopReleaseCard({
   }, [assetExtension, repository]);
 
   return (
-    <article className="tool-card">
-      <Tile className="tool-tile">
-        <div className="tool-identity">
-          <Tag size="sm" type="purple">Desktop</Tag>
-          <p className="tool-field">Windows x64 · Direct download</p>
-          <h3>{title}</h3>
-        </div>
-        <div className="tool-summary">
-          <p>{description}</p>
-          <span className="tool-detail">{technology} · {release.version} · {format}</span>
-        </div>
-        <div className="tool-actions">
-          <Button as="a" className="simulator-link" download href={release.url} size="md">
-            Download {title}
-          </Button>
-          <Link href={`https://github.com/${repository}`} rel="noopener noreferrer" target="_blank">
-            View source ↗
-          </Link>
-        </div>
-      </Tile>
+    <article className={`simulator desktop-tool ${theme}`}>
+      <a
+        className="simulator-link"
+        href={release.url}
+        download
+        aria-label={`Download ${title} ${release.version} for Windows`}
+      />
+      <div className="simulator-heading">
+        <span className="number">{number}</span>
+        <span className="field">Windows x64 · Direct download</span>
+      </div>
+      <div className="simulator-copy">
+        <h2>{title}</h2>
+        <p>{description}</p>
+      </div>
+      <div className="simulator-footer">
+        <span className="detail">
+          {technology} · {release.version} · {format}
+        </span>
+        <a
+          className="source-link"
+          href={`https://github.com/${repository}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Source <span aria-hidden="true">↗</span>
+        </a>
+      </div>
     </article>
   );
 }
