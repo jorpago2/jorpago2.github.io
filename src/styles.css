@@ -196,6 +196,7 @@ h1 {
   margin-bottom: 20px;
   font-size: var(--heading-size);
   font-family: var(--font-display);
+  font-weight: 400;
   line-height: 1.02;
   letter-spacing: -0.045em;
 }
