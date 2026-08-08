@@ -1,9 +1,37 @@
-import { Column, Grid } from "@carbon/react";
+import {
+  Button,
+  Column,
+  Content,
+  Grid,
+  Header,
+  HeaderContainer,
+  HeaderMenuButton,
+  HeaderMenuItem,
+  HeaderName,
+  HeaderNavigation,
+  HeaderSideNavItems,
+  Link,
+  SideNav,
+  SideNavItems,
+  SkipToContent,
+  Tag,
+  Tile,
+} from "@carbon/react";
 import { DesktopReleaseCard } from "./DesktopReleaseCard";
 
-const simulators = [
+type Tool = {
+  title: string;
+  field: string;
+  description: string;
+  detail: string;
+  href: string;
+  repository: string;
+  category: "Simulator" | "Research";
+  tagType: "blue" | "green";
+};
+
+const simulators: Tool[] = [
   {
-    number: "01",
     title: "Electromagnetic Wave Simulator",
     field: "2D FDTD · Electromagnetics & photonics",
     description:
@@ -11,10 +39,10 @@ const simulators = [
     detail: "React · TypeScript · Vite",
     href: "https://jorpago2.github.io/fdtd-2d-simulator/",
     repository: "https://github.com/jorpago2/fdtd-2d-simulator",
-    theme: "fdtd",
+    category: "Simulator",
+    tagType: "blue",
   },
   {
-    number: "02",
     title: "Semiconductor Device Simulator",
     field: "1D Drift–Diffusion · PN junction",
     description:
@@ -22,10 +50,10 @@ const simulators = [
     detail: "React · TypeScript · Vite",
     href: "https://jorpago2.github.io/drift-difussion-simulator/",
     repository: "https://github.com/jorpago2/drift-difussion-simulator",
-    theme: "drift",
+    category: "Simulator",
+    tagType: "blue",
   },
   {
-    number: "03",
     title: "RF Network Simulator",
     field: "Two-port networks · S-parameters",
     description:
@@ -33,10 +61,10 @@ const simulators = [
     detail: "React · TypeScript · Vite",
     href: "https://jorpago2.github.io/rf-web-simulator/",
     repository: "https://github.com/jorpago2/rf-web-simulator",
-    theme: "rf",
+    category: "Simulator",
+    tagType: "blue",
   },
   {
-    number: "04",
     title: "Waveguide Mode Solver",
     field: "Full-vector FDM · Integrated photonics",
     description:
@@ -44,295 +72,262 @@ const simulators = [
     detail: "React · TypeScript · Vite",
     href: "https://jorpago2.github.io/waveguide-mode-solver/",
     repository: "https://github.com/jorpago2/waveguide-mode-solver",
-    theme: "waveguide",
+    category: "Simulator",
+    tagType: "blue",
   },
+];
+
+const researchTools: Tool[] = [
+  {
+    title: "GDS2GOO",
+    field: "GDSII → GOO · Photolithography",
+    description:
+      "Convert GDSII layouts into validated, single-layer GOO exposure files for maskless photolithography with the Elegoo Mars 4 9K. All processing stays in the browser.",
+    detail: "React · TypeScript · Vite",
+    href: "https://jorpago2.github.io/gds2goo/",
+    repository: "https://github.com/jorpago2/gds2goo",
+    category: "Research",
+    tagType: "green",
+  },
+  {
+    title: "SpinCoatSim",
+    field: "Spin coating · Thin-film processing",
+    description:
+      "Model GDSII cross-sections, material stacks, RPM-calibrated film thickness, annealing shrinkage, and planarization in the browser.",
+    detail: "React · TypeScript · Vite",
+    href: "https://jorpago2.github.io/spincoatsim/",
+    repository: "https://github.com/jorpago2/spincoatsim",
+    category: "Research",
+    tagType: "green",
+  },
+  {
+    title: "Reflectometry",
+    field: "Thin-film optics · R/T fitting",
+    description:
+      "Fit calibrated reflectance and transmittance spectra from coherent multilayer stacks using flexible optical models.",
+    detail: "React · TypeScript · Vite",
+    href: "https://jorpago2.github.io/reflectometry/",
+    repository: "https://github.com/jorpago2/reflectometry",
+    category: "Research",
+    tagType: "green",
+  },
+  {
+    title: "SetupSketch",
+    field: "Scientific diagrams · Experimental setups",
+    description:
+      "Build optical, photonic, and electronic setup diagrams with editable components and export them as SVG, PNG, PDF, or JSON.",
+    detail: "React · TypeScript · Vite",
+    href: "https://jorpago2.github.io/setupsketch/",
+    repository: "https://github.com/jorpago2/setupsketch",
+    category: "Research",
+    tagType: "green",
+  },
+];
+
+const navigation = [
+  { href: "#simulators", label: "Simulators", external: false },
+  { href: "#research", label: "Research", external: false },
+  { href: "#desktop", label: "Desktop", external: false },
+  { href: "https://github.com/jorpago2", label: "GitHub", external: true },
+  { href: "https://www.uv.es/jorpago2", label: "UV profile", external: true },
 ] as const;
+
+function NavigationItems({ onNavigate }: { onNavigate?: () => void }) {
+  return navigation.map((item) => (
+    <HeaderMenuItem
+      href={item.href}
+      key={item.href}
+      onClick={onNavigate}
+      rel={item.external ? "noopener noreferrer" : undefined}
+      target={item.external ? "_blank" : undefined}
+    >
+      {item.label}
+    </HeaderMenuItem>
+  ));
+}
+
+function ToolCard({ tool }: { tool: Tool }) {
+  return (
+    <article className="tool-card">
+      <Tile className="tool-tile">
+        <div className="tool-identity">
+          <Tag size="sm" type={tool.tagType}>{tool.category}</Tag>
+          <p className="tool-field">{tool.field}</p>
+          <h3>{tool.title}</h3>
+        </div>
+        <div className="tool-summary">
+          <p>{tool.description}</p>
+          <span className="tool-detail">{tool.detail}</span>
+        </div>
+        <div className="tool-actions">
+          <Button
+            className="simulator-link"
+            href={tool.href}
+            rel="noopener noreferrer"
+            size="md"
+            target="_blank"
+          >
+            Open tool
+          </Button>
+          <Link href={tool.repository} rel="noopener noreferrer" target="_blank">
+            View source ↗
+          </Link>
+        </div>
+      </Tile>
+    </article>
+  );
+}
+
+function ToolSection({
+  id,
+  title,
+  description,
+  tools,
+}: {
+  id: string;
+  title: string;
+  description: string;
+  tools: Tool[];
+}) {
+  return (
+    <Grid as="section" fullWidth className="tool-section" id={id} aria-labelledby={`${id}-title`}>
+      <Column sm={4} md={2} lg={4} className="section-intro">
+        <h2 id={`${id}-title`}>{title}</h2>
+        <p>{description}</p>
+      </Column>
+      <Column sm={4} md={6} lg={12}>
+        <ul className="tool-list">
+          {tools.map((tool) => (
+            <li key={tool.title}><ToolCard tool={tool} /></li>
+          ))}
+        </ul>
+      </Column>
+    </Grid>
+  );
+}
 
 export default function Home() {
   return (
-    <>
-    <a className="skip-link" href="#main-content">Skip to tools</a>
-    <Grid as="main" fullWidth condensed className="site-shell" id="main-content" tabIndex={-1}>
-      <Column sm={4} md={8} lg={16} className="site-shell-column">
-      <header className="site-header">
-        <div className="identity">
-          <img
-            className="avatar"
-            src="https://avatars.githubusercontent.com/u/297438018?v=4"
-            alt="Jorge Parra"
-            width="56"
-            height="56"
-          />
-          <span className="identity-copy">
-            <strong>Jorge Parra</strong>
-            <small>Assistant Professor at University of Valencia · Photonics · Electronics</small>
-          </span>
-        </div>
-        <nav className="header-links" aria-label="Profile links">
-          <a className="header-link" href="https://github.com/jorpago2">
-            GitHub <span aria-hidden="true">↗</span>
-          </a>
-          <a className="header-link" href="https://www.uv.es/jorpago2">
-            Webpage <span aria-hidden="true">↗</span>
-          </a>
-        </nav>
-      </header>
-
-      <section className="intro" id="top">
-        <div className="section-heading education-heading">
-          <p className="eyebrow">ENGINEERING · PHYSICS · EDUCATION</p>
-          <h1>Learn engineering and physics interactively.</h1>
-          <p className="lead">
-            Explore electromagnetic waves, photonic modes, RF networks, and
-            semiconductor devices with visual, browser-based numerical models.
-          </p>
-        </div>
-      </section>
-
-      <section className="simulator-list" aria-label="Available simulators">
-        {simulators.map((simulator) => (
-          <article className={`simulator ${simulator.theme}`} key={simulator.title}>
-            <a
-              className="simulator-link"
-              href={simulator.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Open ${simulator.title} in a new tab`}
+    <HeaderContainer
+      render={({ isSideNavExpanded, onClickSideNavExpand }) => (
+        <>
+          <Header aria-label="Jorge Parra scientific software">
+            <SkipToContent href="#main-content">Skip to tools</SkipToContent>
+            <HeaderMenuButton
+              aria-label={isSideNavExpanded ? "Close menu" : "Open menu"}
+              aria-expanded={isSideNavExpanded}
+              isActive={isSideNavExpanded}
+              onClick={onClickSideNavExpand}
             />
-            <div className="simulator-heading">
-              <span className="number">{simulator.number}</span>
-              <span className="field">{simulator.field}</span>
-            </div>
-            <div className="simulator-copy">
-              <h2>{simulator.title}</h2>
-              <p>{simulator.description}</p>
-            </div>
-            <div className="simulator-footer">
-              <span className="detail">{simulator.detail}</span>
-              <a
-                className="source-link"
-                href={simulator.repository}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Source <span aria-hidden="true">↗</span>
-              </a>
-            </div>
-          </article>
-        ))}
-      </section>
-
-      <section className="research-tools" aria-labelledby="research-tools-title">
-        <div className="section-heading research-heading">
-          <p className="eyebrow">RESEARCH</p>
-          <h2 id="research-tools-title">
-            Tools for fabrication and optical characterization.
-          </h2>
-          <p className="lead research-lead">
-            Prepare lithography files, model thin-film processing, and fit
-            optical spectra with reproducible, browser-based tools.
-          </p>
-        </div>
-
-        <div className="research-list">
-          <article className="simulator research-tool gds2goo">
-            <a
-              className="simulator-link"
-              href="https://jorpago2.github.io/gds2goo/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Open GDS2GOO in a new tab"
-            />
-            <div className="simulator-heading">
-              <span className="number">01</span>
-              <span className="field">GDSII → GOO · Photolithography</span>
-            </div>
-            <div className="simulator-copy">
-              <h2>GDS2GOO</h2>
-              <p>
-                Convert GDSII layouts into validated, single-layer GOO exposure
-                files for maskless photolithography with the Elegoo Mars 4 9K.
-                All processing stays in the browser.
-              </p>
-            </div>
-            <div className="simulator-footer">
-              <span className="detail">React · TypeScript · Vite</span>
-              <a
-                className="source-link"
-                href="https://github.com/jorpago2/gds2goo"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Source <span aria-hidden="true">↗</span>
-              </a>
-            </div>
-          </article>
-
-          <article className="simulator research-tool spincoat">
-            <a
-              className="simulator-link"
-              href="https://jorpago2.github.io/spincoatsim/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Open SpinCoatSim in a new tab"
-            />
-            <div className="simulator-heading">
-              <span className="number">02</span>
-              <span className="field">Spin coating · Thin-film processing</span>
-            </div>
-            <div className="simulator-copy">
-              <h2>SpinCoatSim</h2>
-              <p>
-                Model GDSII cross-sections, material stacks, RPM-calibrated film
-                thickness, annealing shrinkage, and planarization in the browser.
-              </p>
-            </div>
-            <div className="simulator-footer">
-              <span className="detail">React · TypeScript · Vite</span>
-              <a
-                className="source-link"
-                href="https://github.com/jorpago2/spincoatsim"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Source <span aria-hidden="true">↗</span>
-              </a>
-            </div>
-          </article>
-
-          <article className="simulator research-tool reflectometry">
-            <a
-              className="simulator-link"
-              href="https://jorpago2.github.io/reflectometry/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Open Reflectometry in a new tab"
-            />
-            <div className="simulator-heading">
-              <span className="number">03</span>
-              <span className="field">Thin-film optics · R/T fitting</span>
-            </div>
-            <div className="simulator-copy">
-              <h2>Reflectometry</h2>
-              <p>
-                Fit calibrated reflectance and transmittance spectra from
-                coherent multilayer stacks using flexible optical models.
-              </p>
-            </div>
-            <div className="simulator-footer">
-              <span className="detail">React · TypeScript · Vite</span>
-              <a
-                className="source-link"
-                href="https://github.com/jorpago2/reflectometry"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Source <span aria-hidden="true">↗</span>
-              </a>
-            </div>
-          </article>
-
-          <article className="simulator research-tool setupsketch">
-            <a
-              className="simulator-link"
-              href="https://jorpago2.github.io/setupsketch/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Open SetupSketch in a new tab"
-            />
-            <div className="simulator-heading">
-              <span className="number">04</span>
-              <span className="field">Scientific diagrams · Experimental setups</span>
-            </div>
-            <div className="simulator-copy">
-              <h2>SetupSketch</h2>
-              <p>
-                Build optical, photonic, and electronic setup diagrams with
-                editable components and export them as SVG, PNG, PDF, or JSON.
-              </p>
-            </div>
-            <div className="simulator-footer">
-              <span className="detail">React · TypeScript · Vite</span>
-              <a
-                className="source-link"
-                href="https://github.com/jorpago2/setupsketch"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Source <span aria-hidden="true">↗</span>
-              </a>
-            </div>
-          </article>
-
-        </div>
-      </section>
-
-      <section className="desktop-tools" aria-labelledby="desktop-tools-title">
-        <div className="section-heading desktop-heading">
-          <p className="eyebrow">DESKTOP SOFTWARE</p>
-          <h2 id="desktop-tools-title">Laboratory software.</h2>
-          <p className="lead desktop-lead">
-            Download tools for optical programming, fiber alignment, and
-            automated photonic characterization.
-          </p>
-        </div>
-
-        <div className="desktop-list">
-          <DesktopReleaseCard
-            number="01"
-            title="PCMWriter"
-            description="Program and characterize phase-change materials on silicon photonic devices through guarded optical and motion workflows."
-            technology="Python"
-            format="ZIP"
-            repository="jorpago2/pcmwriter"
-            assetExtension=".zip"
-            fallbackVersion="v0.5.0"
-            fallbackUrl="https://github.com/jorpago2/pcmwriter/releases/download/v0.5.0/PCMWriter-Windows-x64-v0.5.0.zip"
-            theme="pcmwriter"
-          />
-          <DesktopReleaseCard
-            number="02"
-            title="PICBench"
-            description="Align optical fibers with camera guidance and automate spectral characterization of silicon photonic integrated circuits."
-            technology="Python"
-            format="EXE"
-            repository="jorpago2/picbench"
-            assetExtension=".exe"
-            fallbackVersion="v0.2.0"
-            fallbackUrl="https://github.com/jorpago2/picbench/releases/download/v0.2.0/PICBench.exe"
-            theme="picbench"
-          />
-        </div>
-      </section>
-
-      <footer className="site-footer">
-        <div className="footer-copy">
-          <strong>Built for open research and hands-on learning.</strong>
-          <p>Browser-based simulators, fabrication tools, and laboratory software.</p>
-        </div>
-        <div className="footer-meta">
-          <nav className="footer-links" aria-label="Footer links">
-            <a
-              href="https://github.com/jorpago2"
-              target="_blank"
-              rel="noopener noreferrer"
+            <HeaderName className="site-header-name" href="/" prefix="Jorge Parra"><span className="header-product">Scientific tools</span></HeaderName>
+            <HeaderNavigation aria-label="Primary navigation">
+              <NavigationItems />
+            </HeaderNavigation>
+            <SideNav
+              aria-label="Mobile navigation"
+              className="mobile-side-nav"
+              data-expanded={isSideNavExpanded}
+              expanded={isSideNavExpanded}
+              isPersistent={false}
+              onOverlayClick={onClickSideNavExpand}
+              onSideNavBlur={onClickSideNavExpand}
             >
-              GitHub <span aria-hidden="true">↗</span>
-            </a>
-            <a
-              href="https://www.uv.es/jorpago2"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              University profile <span aria-hidden="true">↗</span>
-            </a>
-            <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
-          </nav>
-          <p className="footer-location">Jorge Parra · Valencia, Spain · 2026</p>
-        </div>
-      </footer>
-      </Column>
-    </Grid>
-    </>
+              <SideNavItems>
+                <HeaderSideNavItems>
+                  <NavigationItems onNavigate={onClickSideNavExpand} />
+                </HeaderSideNavItems>
+              </SideNavItems>
+            </SideNav>
+          </Header>
+
+          <Content className="site-main" id="main-content" tabIndex={-1}>
+            <Grid as="section" fullWidth className="hero" aria-labelledby="page-title">
+              <Column sm={4} md={8} lg={10}>
+                <p className="hero-label">Open scientific software</p>
+                <h1 id="page-title">Learn engineering and physics interactively.</h1>
+                <p className="hero-lead">
+                  Browser-based numerical tools for electromagnetics, photonics,
+                  semiconductor devices, fabrication, and laboratory automation.
+                </p>
+                <div className="hero-actions">
+                  <Button href="#simulators" size="lg">Explore simulators</Button>
+                  <Button href="#research" kind="tertiary" size="lg">Research tools</Button>
+                </div>
+              </Column>
+              <Column sm={4} md={8} lg={6} className="hero-context">
+                <dl>
+                  <div><dt>Delivery</dt><dd>Browser and Windows</dd></div>
+                  <div><dt>Access</dt><dd>Open source</dd></div>
+                  <div><dt>Fields</dt><dd>Photonics · Electronics</dd></div>
+                </dl>
+              </Column>
+            </Grid>
+
+            <ToolSection
+              id="simulators"
+              title="Simulators"
+              description="Interactive numerical models for teaching and exploration."
+              tools={simulators}
+            />
+
+            <ToolSection
+              id="research"
+              title="Research tools"
+              description="Reproducible workflows for fabrication and optical characterization."
+              tools={researchTools}
+            />
+
+            <Grid as="section" fullWidth className="tool-section" id="desktop" aria-labelledby="desktop-title">
+              <Column sm={4} md={2} lg={4} className="section-intro">
+                <h2 id="desktop-title">Desktop software</h2>
+                <p>Windows applications for optical programming, alignment, and automated characterization.</p>
+              </Column>
+              <Column sm={4} md={6} lg={12}>
+                <ul className="tool-list">
+                  <li>
+                    <DesktopReleaseCard
+                      title="PCMWriter"
+                      description="Program and characterize phase-change materials on silicon photonic devices through guarded optical and motion workflows."
+                      technology="Python"
+                      format="ZIP"
+                      repository="jorpago2/pcmwriter"
+                      assetExtension=".zip"
+                      fallbackVersion="v0.5.0"
+                      fallbackUrl="https://github.com/jorpago2/pcmwriter/releases/download/v0.5.0/PCMWriter-Windows-x64-v0.5.0.zip"
+                    />
+                  </li>
+                  <li>
+                    <DesktopReleaseCard
+                      title="PICBench"
+                      description="Align optical fibers with camera guidance and automate spectral characterization of silicon photonic integrated circuits."
+                      technology="Python"
+                      format="EXE"
+                      repository="jorpago2/picbench"
+                      assetExtension=".exe"
+                      fallbackVersion="v0.2.0"
+                      fallbackUrl="https://github.com/jorpago2/picbench/releases/download/v0.2.0/PICBench.exe"
+                    />
+                  </li>
+                </ul>
+              </Column>
+            </Grid>
+          </Content>
+
+          <footer className="site-footer">
+            <Grid fullWidth className="footer-grid">
+              <Column sm={4} md={5} lg={10}>
+                <strong>Built for open research and hands-on learning.</strong>
+                <p>Jorge Parra · University of Valencia · Spain</p>
+              </Column>
+              <Column sm={4} md={3} lg={6} className="footer-links">
+                <Link href="https://github.com/jorpago2" rel="noopener noreferrer" target="_blank">GitHub ↗</Link>
+                <Link href="https://www.uv.es/jorpago2" rel="noopener noreferrer" target="_blank">University profile ↗</Link>
+                <Link href="#main-content">Back to top</Link>
+              </Column>
+            </Grid>
+          </footer>
+        </>
+      )}
+    />
   );
 }
