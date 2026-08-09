@@ -193,6 +193,14 @@ Esto cambia la cantidad de área científica visible y hace que las apps parezca
 
 **Criterio de corrección:** usar una política común: escenario visible al entrar, panel cerrado en móvil y panel inicial configurable —pero documentado— solo en escritorio.
 
+### P2.6 — El entorno local de FDTD no es estable para regresión visual
+
+Durante el recorrido, el servidor Vite de FDTD registró repetidamente `Invalid hook call` y errores no controlados al montar `Header`, `ScientificToolRail`, `ApplicationHeader` y `ScientificSlider`. Las trazas muestran dos artefactos optimizados distintos de `react-dom_client`, aunque `vite.config.ts` ya declara `resolve.dedupe` para React.
+
+La interfaz terminó renderizando y el error no volvió a aumentar en la última interacción aislada, por lo que **no se clasifica aquí como fallo demostrado del despliegue de producción**. Sí invalida un test visual local si no se parte de una caché limpia y puede explicar montajes parciales o inconsistentes durante desarrollo.
+
+**Criterio de corrección:** ejecutar la suite FDTD desde una instalación y caché de Vite limpias, hacer fallar Playwright ante `console.error`/`pageerror` y comprobar que `pnpm why react react-dom` resuelve una sola instancia antes de aceptar las capturas.
+
 ## Evaluación por aplicación
 
 | App | Valoración de interfaz | Problemas prioritarios |
