@@ -8,12 +8,16 @@ import reactRefresh from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
 
 export default tseslint.config(
-  { ignores: ["dist", ".ssr"] },
+  { ignores: ["dist", ".ssr", "storybook-static"] },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
     files: ["scripts/**/*.mjs", "tests/**/*.mjs"],
     languageOptions: { globals: globals.node },
+  },
+  {
+    files: ["scripts/interface-conformance.mjs"],
+    languageOptions: { globals: { ...globals.node, ...globals.browser } },
   },
   {
     files: ["**/*.{ts,tsx}"],

@@ -1,6 +1,6 @@
 # Contrato común de interfaz científica
 
-Estado: normativo. Versión: 2.3. Aplicable a las ocho herramientas científicas publicadas por Jorge Parra.
+Estado: normativo. Versión: 2.4. Aplicable a las ocho herramientas científicas publicadas por Jorge Parra.
 
 ## Fuente de verdad
 
@@ -33,7 +33,7 @@ Los layouts de página usan Carbon `Grid` y `Column`, con spans explícitos para
 
 ### Rail común de herramientas
 
-La navegación de flujo se implementa con `ScientificToolRail` de `@jorpago2/scientific-ui` 0.4.0 o posterior. En escritorio compone `SideNav`, `SideNavItems` y `SideNavLink` de Carbon; sus dimensiones y estados no se recrean localmente:
+La navegación de flujo se implementa con `ScientificToolRail` de `@jorpago2/scientific-ui` 0.5.0 o posterior. En escritorio compone `SideNav`, `SideNavItems` y `SideNavLink` de Carbon; sus dimensiones y estados no se recrean localmente:
 
 - 256 px de ancho en escritorio y 56 px de alto como barra inferior.
 - Filas de 32 px en navegación lateral, padding e iconos de 16 px, etiqueta de 14 px semibold e indicador activo de 4 px.
@@ -46,6 +46,8 @@ La navegación de flujo se implementa con `ScientificToolRail` de `@jorpago2/sci
 La barra inferior por debajo de `lg` es una excepción explícita al comportamiento responsive del UI Shell de Carbon. Conserva el landmark, la lista, los botones, los nombres accesibles y los estados de `SideNav`; solo cambia su presentación y el tamaño táctil. No autoriza otras sustituciones de componentes Carbon.
 
 La cabecera compartida se implementa con `ScientificHeader` y compone `Header`, `HeaderName` y `HeaderGlobalBar`. El producto ocupa 256 px, el contexto se centra geométricamente en el viewport y la altura es siempre 48 px. Las aplicaciones no recrean estas columnas ni conservan CSS local para el header o el rail: solo aportan contenido y adaptadores de eventos. La hoja de `scientific-ui` se carga después de los estilos de producto y es la autoridad final del chrome.
+
+El panel de tarea se implementa con `ScientificTaskPanel` sobre un `Layer` Carbon. Su cabecera mide 72 px, usa 16 px de separación, y el cuerpo es el único contenedor con scroll. En escritorio ocupa entre 360 y 384 px; en tablet o móvil utiliza el ancho disponible. Las aplicaciones solo declaran su posición y contenido, sin redefinir superficie, tipografía, padding, borde o scroll. El lienzo o resultado principal usa `scientific-stage`; una barra heredada que todavía no pueda adoptar `ScientificStatusBar` usa `scientific-status-surface` para compartir superficie y geometría.
 
 Los inspectores modales componen `ComposedModal`, `ModalHeader` y `ModalBody`, y los estados científicos utilizan `IconIndicator`. Los temas se aplican mediante `GlobalTheme` o `Theme`; el CSS compartido no detecta temas mediante clases internas.
 
