@@ -1,6 +1,6 @@
 # Contrato común de interfaz científica
 
-Estado: normativo. Versión: 2.0. Aplicable a las ocho herramientas científicas publicadas por Jorge Parra.
+Estado: normativo. Versión: 2.1. Aplicable a las ocho herramientas científicas publicadas por Jorge Parra.
 
 ## Fuente de verdad
 
@@ -30,6 +30,18 @@ Cada aplicación presenta, según sean necesarios:
 6. Barra inferior concisa con estado científico y metadatos.
 
 Los layouts de página usan Carbon `Grid` y `Column`, con spans explícitos para `sm`, `md` y `lg`. Cada grupo lógico independiente utiliza su propio Grid.
+
+### Rail común de herramientas
+
+La navegación de flujo se implementa con `ScientificToolRail` de `@jorpago2/scientific-ui` 0.2.0 o posterior. Sus dimensiones y estados no se recrean localmente:
+
+- 192 px de ancho en escritorio, 64 px en modo compacto y 64 px de alto como barra inferior.
+- Filas de 48 px en navegación lateral, iconos de 20 px y un indicador activo de 4 px.
+- Toda la fila es el objetivo de clic; icono y etiqueta no son objetivos independientes.
+- La selección activa combina posición, superficie e indicador, no solo color.
+- `ArrowUp`/`ArrowDown` y `Home`/`End` desplazan el foco; `Escape` cierra los paneles colapsables y devuelve el foco al trigger.
+- Un solo panel de tarea puede estar abierto. Los paneles utilizan el ancho común de 384 px cuando hay espacio y pasan a overlay o sheet antes de comprimir el resultado.
+- Cada adaptador local conserva únicamente el mapeo entre herramientas, paneles y eventos científicos heredados.
 
 ## Estados científicos
 
@@ -100,6 +112,6 @@ Los diagramas ofrecen `Fit width`, `Fit selection` y `Fit all`. Los diagramas co
 
 ## Publicación y excepciones
 
-Las aplicaciones fijan una versión exacta de `@jorpago2/scientific-ui`. Hasta la primera publicación npm, pueden consumir el tarball firmado de `0.1.0` incluido en `vendor/`; la referencia se sustituirá por `"0.1.0"` sin cambiar código de aplicación.
+Las aplicaciones fijan una versión exacta de `@jorpago2/scientific-ui`. Hasta la primera publicación npm, consumen el tarball versionado de `0.2.0` incluido en `vendor/`; la referencia se sustituirá por `"0.2.0"` sin cambiar código de aplicación.
 
 Una excepción necesita: motivo científico o técnico, alcance mínimo, alternativa accesible y prueba que impida su expansión accidental.
