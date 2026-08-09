@@ -1,7 +1,9 @@
 # Auditoría profunda de conformidad de las ocho interfaces
 
-Fecha: 9 de agosto de 2026  
-Referencia normativa: [`interface-contract.md`](./interface-contract.md)  
+Fecha: 9 de agosto de 2026
+
+Referencia normativa: [`interface-contract.md`](./interface-contract.md)
+
 Versión local auditada de `@jorpago2/scientific-ui`: `0.5.3`
 
 ## Conclusión ejecutiva
