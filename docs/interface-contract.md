@@ -1,6 +1,6 @@
 # Contrato común de interfaz científica
 
-Estado: normativo. Versión: 2.1. Aplicable a las ocho herramientas científicas publicadas por Jorge Parra.
+Estado: normativo. Versión: 2.2. Aplicable a las ocho herramientas científicas publicadas por Jorge Parra.
 
 ## Fuente de verdad
 
@@ -33,15 +33,19 @@ Los layouts de página usan Carbon `Grid` y `Column`, con spans explícitos para
 
 ### Rail común de herramientas
 
-La navegación de flujo se implementa con `ScientificToolRail` de `@jorpago2/scientific-ui` 0.2.0 o posterior. Sus dimensiones y estados no se recrean localmente:
+La navegación de flujo se implementa con `ScientificToolRail` de `@jorpago2/scientific-ui` 0.3.5 o posterior. En escritorio compone `SideNav`, `SideNavItems` y `SideNavLink` de Carbon; sus dimensiones y estados no se recrean localmente:
 
-- 192 px de ancho en escritorio, 64 px en modo compacto y 64 px de alto como barra inferior.
-- Filas de 48 px en navegación lateral, iconos de 20 px y un indicador activo de 4 px.
+- 256 px de ancho en escritorio y 56 px de alto como barra inferior.
+- Filas de 32 px en navegación lateral, padding e iconos de 16 px, etiqueta de 14 px semibold e indicador activo de 4 px.
 - Toda la fila es el objetivo de clic; icono y etiqueta no son objetivos independientes.
 - La selección activa combina posición, superficie e indicador, no solo color.
 - `ArrowUp`/`ArrowDown` y `Home`/`End` desplazan el foco; `Escape` cierra los paneles colapsables y devuelve el foco al trigger.
 - Un solo panel de tarea puede estar abierto. Los paneles utilizan el ancho común de 384 px cuando hay espacio y pasan a overlay o sheet antes de comprimir el resultado.
 - Cada adaptador local conserva únicamente el mapeo entre herramientas, paneles y eventos científicos heredados.
+
+La barra inferior por debajo de `lg` es una excepción explícita al comportamiento responsive del UI Shell de Carbon. Conserva el landmark, la lista, los botones, los nombres accesibles y los estados de `SideNav`; solo cambia su presentación y el tamaño táctil. No autoriza otras sustituciones de componentes Carbon.
+
+La cabecera compartida compone `Header`, `HeaderName` y `HeaderGlobalBar`. Los inspectores modales componen `ComposedModal`, `ModalHeader` y `ModalBody`, y los estados científicos utilizan `IconIndicator`. Los temas se aplican mediante `GlobalTheme` o `Theme`; el CSS compartido no detecta temas mediante clases internas.
 
 ## Estados científicos
 
@@ -112,6 +116,6 @@ Los diagramas ofrecen `Fit width`, `Fit selection` y `Fit all`. Los diagramas co
 
 ## Publicación y excepciones
 
-Las aplicaciones fijan una versión exacta de `@jorpago2/scientific-ui`. Hasta la primera publicación npm, consumen el tarball versionado de `0.2.0` incluido en `vendor/`; la referencia se sustituirá por `"0.2.0"` sin cambiar código de aplicación.
+Las aplicaciones fijan una versión exacta de `@jorpago2/scientific-ui`. Hasta la primera publicación npm, consumen el tarball versionado incluido en `vendor/`; la referencia se sustituirá por la misma versión npm sin cambiar código de aplicación.
 
 Una excepción necesita: motivo científico o técnico, alcance mínimo, alternativa accesible y prueba que impida su expansión accidental.
