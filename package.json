@@ -15,7 +15,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test:interfaces": "node scripts/interface-conformance.mjs"
   },
   "dependencies": {
     "@carbon/react": "1.113.0",

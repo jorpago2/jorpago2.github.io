@@ -1,104 +1,105 @@
-# Contrato común de interfaz
+# Contrato común de interfaz científica
 
-Estado: activo. Aplica al Dashboard, la web personal y las herramientas científicas publicadas por Jorge Parra.
+Estado: normativo. Versión: 2.0. Aplicable a las ocho herramientas científicas publicadas por Jorge Parra.
 
-## Objetivo
+## Fuente de verdad
 
-Las aplicaciones conservan un color de acento y recursos gráficos propios, pero comparten una base visual, navegación, semántica, accesibilidad y comportamiento responsive. Este contrato evita una librería de componentes común: cada repositorio lo implementa con CSS local y su stack actual.
+La interfaz común se distribuye mediante `@jorpago2/scientific-ui`. Las aplicaciones consumen una versión exacta y mantienen localmente únicamente lógica científica, canvas, gráficos y adaptadores de compatibilidad.
 
-## Lenguaje visual común
+Si un `design.md` local contradice este contrato en tipografía, tema, geometría, estados o responsive, prevalece este documento. Las excepciones locales deben limitarse a significado científico y quedar documentadas.
 
-| Elemento | Regla visual |
+## Sistema visual
+
+- Carbon Design System `g10` es la única base para el chrome de aplicación.
+- IBM Plex Sans se usa en la interfaz e IBM Plex Mono en valores, unidades, coordenadas e identificadores.
+- Superficies y controles siguen la geometría cuadrada de Carbon. No se crean sistemas paralelos de radios, sombras, gradientes o píldoras.
+- Los colores de interfaz proceden de tokens semánticos `--cds-*`.
+- No existe un acento de aplicación por herramienta. El azul Carbon identifica acciones y selección.
+- Colores de materiales, dopajes, series, campos y geometrías son excepciones científicas; nunca son el único canal de significado.
+- CSS de producto no selecciona clases internas `.cds--*`.
+
+## Arquitectura del workbench
+
+Cada aplicación presenta, según sean necesarios:
+
+1. Cabecera compacta con producto, contexto, estado, acceso al portal y acción principal.
+2. Navegación de flujo controlada.
+3. Un único panel de tarea abierto simultáneamente.
+4. Área científica dominante.
+5. Inspector contextual opcional, fuera del flujo de Carbon Grid.
+6. Barra inferior concisa con estado científico y metadatos.
+
+Los layouts de página usan Carbon `Grid` y `Column`, con spans explícitos para `sm`, `md` y `lg`. Cada grupo lógico independiente utiliza su propio Grid.
+
+## Estados científicos
+
+El vocabulario común es:
+
+| Estado | Significado |
 | --- | --- |
-| Tipografía | Inter, Aptos o la sans-serif del sistema. La tipografía monoespaciada se reserva para datos, unidades y código. |
-| Neutros | Tinta `#141713`, texto secundario `#697068`, fondo `#f6f7f3`, superficie blanca y borde `#d8dcd5`. Los lienzos científicos pueden ajustar el fondo para mejorar la lectura. |
-| Acento | Cada aplicación conserva un único acento reconocible. Se usa en la acción primaria, el foco, la selección activa y detalles de marca; no sustituye a etiquetas de estado. |
-| Geometría | Controles con radio de 8 px, paneles de 14–16 px y píldoras solo para estados o acciones compactas. |
-| Cabecera | Superficie clara, borde inferior fino, marca a la izquierda y `All tools`, ayuda y estado/contexto a la derecha. Las herramientas pueden usar una segunda fila para navegación o proyectos densos. |
-| Acciones | La primaria usa el acento y peso alto; las secundarias usan superficie blanca y borde neutro. Altura mínima: 36 px en escritorio y 44 px en viewport estrecho. |
-| Campos | Fondo blanco, borde neutro, radio de 8 px, etiqueta visible y aro de foco derivado del acento. |
-| Elevación | Las sombras se reservan para paneles flotantes, menús y superficies que realmente se superponen. |
+| `needs-input` | Falta una entrada o ejemplo explícito. |
+| `ready` | Las entradas son válidas y el cálculo puede comenzar. |
+| `running` | Existe una operación activa, anunciada mediante `aria-live`. |
+| `up-to-date` | El resultado corresponde a los parámetros actuales. |
+| `modified` | Existen cambios posteriores al último resultado. |
+| `validated` | El resultado superó las comprobaciones aplicables. |
+| `warning` | Hay resultado, pero presenta límites o advertencias relevantes. |
+| `failed` | La operación falló y se explica una acción de recuperación. |
 
-### Jerarquía del workspace
+El estado de guardado del proyecto es independiente del estado del resultado científico.
 
-| Patrón | Regla visual |
-| --- | --- |
-| Panel principal | Superficie blanca, borde neutro y radio de 14 px. Los paneles anidados no añaden otra sombra. |
-| Métrica | Etiqueta secundaria, valor prominente con cifras tabulares y unidad separada. Un borde superior con el acento identifica la familia sin codificar el estado. |
-| Mensaje | Borde izquierdo de 3 px, fondo semántico suave y texto explícito. Éxito, aviso y error comparten significado entre aplicaciones. |
-| Toolbar científica | Controles relacionados dentro de una superficie suave con borde único; la opción activa usa el acento. En móvil puede desplazarse horizontalmente sin provocar overflow de página. |
-| Vacío o carga | Explica qué falta o está ocurriendo y, cuando proceda, cuál es la siguiente acción. No depende solo de una ilustración o spinner. |
+## Responsive
 
-## Reglas obligatorias
+- Breakpoints Carbon: `sm` 320 px, `md` 672 px, `lg` 1056 px, `xlg` 1312 px y `max` 1584 px.
+- Escritorio: navegación lateral, panel de 360–400 px y área científica flexible.
+- Tablet: panel a ancho completo o superpuesto antes de comprimir el resultado.
+- Móvil: navegación inferior, objetivos táctiles preferentemente de 44 px y mini-preview de 120–160 px cuando el panel oculta el canvas.
+- Se comprueba 320, 375, 414, 768, 1024 y 1440 px.
+- No se permite overflow horizontal de página, acciones esenciales ocultas ni etiquetas interactivas partidas en dos líneas.
+- `html` y `body` usan `overflow-x: clip`; un canvas fijo puede documentar una excepción siempre que no oculte controles alcanzables.
 
-| Área | Regla | Comprobación mínima |
-| --- | --- | --- |
-| Navegación | Toda herramienta incluye un enlace visible a `https://jorpago2.github.io/`. El texto puede ser `All tools` o `Online Simulators & Tools`; no abre una pestaña nueva. | El enlace es visible, accesible con teclado y funciona a 360 px. |
-| Semántica | Usar landmarks nativos (`header`, `nav`, `main`, `aside`, `footer`) cuando describan una región. Los botones ejecutan acciones y los enlaces navegan. | El documento tiene un `main` único y un orden de encabezados lógico. |
-| Salto al contenido | Las interfaces con cabecera o navegación persistente incluyen un enlace inicial para saltar al workspace principal. | El enlace aparece al recibir foco y mueve el foco al contenido. |
-| Etiquetas | Cada campo tiene una etiqueta programática. Los iconos sin texto incluyen un nombre accesible; los decorativos se ocultan a tecnologías de asistencia. | No hay controles sin nombre accesible. |
-| Teclado y foco | Todas las funciones esenciales son operables con teclado y muestran un foco claramente visible. Los diálogos devuelven el foco al control que los abrió. | Recorrido completo con `Tab`, `Shift+Tab`, `Enter`, `Space` y `Escape` cuando proceda. |
-| Tamaño de controles | Los objetivos táctiles miden al menos 44 px en viewport estrecho. En escritorio pueden reducirse a 36 px si mantienen separación suficiente. | Medición a 360 px y escritorio. |
-| Responsive | No se ocultan acciones esenciales ni aparece scroll horizontal de página a 360 px. El contenido se adapta antes de reducir legibilidad. | Revisar 360 px, 768 px y un escritorio de al menos 1280 px. |
-| Movimiento | Las animaciones respetan `prefers-reduced-motion`. Ninguna transición es necesaria para comprender un resultado. | Con reducción de movimiento, la interfaz sigue siendo plenamente utilizable. |
-| Contraste | Texto, foco, bordes funcionales y estados mantienen contraste legible sobre su fondo. El color nunca es el único indicador de estado. | Inspección de estados normal, foco, error y deshabilitado. |
+Los diagramas ofrecen `Fit width`, `Fit selection` y `Fit all`. Los diagramas complejos incorporan minimapa y un zoom mínimo legible.
 
-## Controles y jerarquía
+## Interacción y accesibilidad
 
-- Cada contexto tiene una acción primaria inequívoca; las acciones secundarias no compiten visualmente con ella.
-- La vista inicial muestra solo el contexto mínimo, las entradas esenciales y la siguiente acción. Capacidades, parámetros avanzados, diagnósticos y exportaciones se revelan mediante pestañas, paneles contextuales o desplegables nativos.
-- Las herramientas no ejecutan cálculos ni muestran resultados de ejemplo al abrirse. Los ejemplos se cargan mediante una acción explícita y claramente identificada.
-- Las portadas promocionales se reservan para el Dashboard y la web personal. Una herramienta comienza con una cabecera de trabajo compacta y da acceso a su alcance o metodología bajo demanda.
-- Las acciones destructivas se separan de las frecuentes, se nombran de forma explícita y piden confirmación cuando la pérdida no es recuperable.
-- Un control deshabilitado conserva su etiqueta y comunica la razón cerca del control cuando no sea evidente.
-- Toolbars densas pueden agrupar exportaciones o acciones infrecuentes, pero no esconder la ejecución principal, el estado ni la navegación al Dashboard.
-- Los valores repetidos de color, espaciado, borde y sombra se definen como variables CSS locales siguiendo el lenguaje visual común.
+- Landmarks, orden de encabezados y salto al contenido son obligatorios.
+- Se preserva semántica nativa antes de añadir ARIA.
+- Todos los controles tienen nombre accesible; los icon-only Carbon reciben su prop de etiqueta.
+- `Escape` cierra paneles y devuelve el foco al trigger.
+- El foco no queda cubierto por cabeceras, barras o navegación persistente.
+- No se usa `tabIndex > 0` ni se elimina el focus ring sin sustituto visible.
+- Error, éxito, advertencia y selección incluyen texto, icono, forma o posición además de color.
+- El movimiento no esencial desaparece con `prefers-reduced-motion`.
 
-## Estados de aplicación
+## Entradas, resultados y exportación
 
-Toda operación asíncrona o cálculo distingue, cuando corresponda:
+- Cada parámetro muestra nombre, unidad, rango y procedencia cuando sea relevante.
+- La notación científica se acepta para magnitudes que puedan abarcar varios órdenes de magnitud.
+- No se corrigen silenciosamente entradas físicas inválidas.
+- Un resultado modificado u obsoleto se distingue del resultado actual.
+- Empty states explican qué falta y ofrecen la siguiente acción útil.
+- Las exportaciones muestran recibo con nombre de archivo, formato y destino o contexto.
+- Los gráficos incluyen magnitud y unidad en ejes, nombre accesible y alternativa exportable o textual.
 
-1. `idle`: todavía no existe un resultado.
-2. `running`: el cálculo está activo; se evita lanzarlo dos veces y se muestra progreso o actividad textual.
-3. `success`: el resultado está disponible y se identifica cuándo o con qué parámetros se obtuvo.
-4. `warning`: el resultado existe, pero tiene límites, extrapolaciones o advertencias relevantes.
-5. `error`: se explica qué falló y qué acción puede corregirlo sin borrar entradas válidas.
+## Compatibilidad conocida
 
-Los cambios de estado se anuncian mediante un elemento de estado nativo o una región `aria-live` adecuada. Un spinner sin texto no es suficiente.
+- Reflectometry conserva montados los controles e IDs consultados por su motor DOM.
+- FDTD conserva los eventos `fdtd:*`, IDs y atributos utilizados por su runtime.
+- React Flow, Plotly y los canvas científicos siguen siendo implementaciones locales.
+- La adopción del paquete no modifica algoritmos, formatos de proyecto ni modelos físicos.
 
-## Reglas para herramientas científicas
+## Criterios de aceptación
 
-- Cada parámetro muestra nombre, unidad y rango válido o recomendado.
-- La validación ocurre antes del cálculo y no corrige silenciosamente entradas físicas inválidas.
-- Los resultados diferencian valor, unidad, incertidumbre y calidad numérica cuando estén disponibles.
-- Las advertencias de convergencia, discretización, extrapolación o validez del modelo permanecen junto al resultado afectado.
-- Los gráficos tienen título o nombre accesible, ejes con magnitud y unidad, leyenda cuando sea necesaria y una alternativa exportable o textual para los valores relevantes.
-- Las hipótesis del modelo y el alcance se pueden consultar sin abandonar el workspace.
-- El procesamiento local se indica cuando sea cierto; no se promete privacidad local si existe transmisión de datos.
+- Lint, typecheck, pruebas científicas y build del repositorio pasan.
+- No aparecen errores nuevos de consola ni recursos rotos.
+- El flujo principal funciona con ratón, táctil y teclado.
+- Identidad, contexto, estado y acción principal siguen localizables en todos los anchos objetivo.
+- No existe overflow horizontal global.
+- Estados vacío, modificado, ejecución, éxito, advertencia, error y exportación son comprensibles.
+- La suite transversal del portal pasa contra las aplicaciones desplegadas.
 
-### Visualización científica
+## Publicación y excepciones
 
-| Elemento | Regla común |
-| --- | --- |
-| Paleta | Series categóricas con la paleta accesible azul `#0072b2`, naranja `#d55e00`, verde `#009e73` y magenta `#cc79a7`; además del color, las series se distinguen mediante trazo o marcador. |
-| Ejes | Fondo blanco o transparente sobre superficie blanca, rejilla `#e7edef`, eje `#9fb0b5`, texto `#40555c` y unidad incluida en el título. |
-| Leyenda | Horizontal sobre la gráfica cuando haya espacio; en móvil se adapta sin comprimir el área de datos. Se oculta si solo existe una serie inequívoca. |
-| Inspección | El cursor muestra magnitud, unidad y coordenada con precisión útil. Zoom y desplazamiento no alteran los datos y ofrecen una forma visible de restablecer la vista. |
-| Escalas de color | Secuenciales perceptualmente uniformes; divergentes centradas explícitamente en cero. No se usa arcoíris para magnitudes escalares. |
-| Exportación | SVG para curvas y diagramas vectoriales; PNG para mapas rasterizados. La exportación conserva nombres de ejes, unidades y leyenda. |
+Las aplicaciones fijan una versión exacta de `@jorpago2/scientific-ui`. Hasta la primera publicación npm, pueden consumir el tarball firmado de `0.1.0` incluido en `vendor/`; la referencia se sustituirá por `"0.1.0"` sin cambiar código de aplicación.
 
-## Criterio de finalización
-
-Antes de publicar un cambio de interfaz:
-
-- [ ] El lint, typecheck, tests y build propios del repositorio pasan.
-- [ ] No hay errores nuevos en la consola ni recursos locales rotos.
-- [ ] El flujo principal funciona con teclado.
-- [ ] Se revisan 360 px, 768 px y escritorio sin overflow de página.
-- [ ] Foco, estados, errores y controles deshabilitados siguen siendo comprensibles.
-- [ ] El enlace al Dashboard permanece visible y operativo.
-- [ ] Los cambios científicos conservan unidades, validaciones y advertencias existentes.
-
-## Excepciones
-
-Una excepción es válida cuando la visualización científica o el espacio de trabajo la exige. Debe limitarse al componente afectado y documentarse en el README o en una prueba del repositorio. Una excepción no justifica perder navegación, acceso por teclado, validación física ni comunicación de errores.
+Una excepción necesita: motivo científico o técnico, alcance mínimo, alternativa accesible y prueba que impida su expansión accidental.

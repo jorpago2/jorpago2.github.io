@@ -12,6 +12,7 @@
 
 # testing
 /coverage
+/interface-conformance-results.json
 
 # misc
 .DS_Store
