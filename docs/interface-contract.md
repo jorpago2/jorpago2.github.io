@@ -38,6 +38,7 @@ La navegación de flujo se implementa con `ScientificToolRail` de `@jorpago2/sci
 - 256 px de ancho en escritorio y 56 px de alto como barra inferior.
 - Filas de 32 px en navegación lateral, padding e iconos de 16 px, etiqueta de 14 px semibold e indicador activo de 4 px.
 - Toda la fila es el objetivo de clic; icono y etiqueta no son objetivos independientes.
+- En la barra inferior, el centro horizontal del icono coincide con el de su etiqueta en todos los anchos inferiores a `lg`.
 - La selección activa combina posición, superficie e indicador, no solo color.
 - `ArrowUp`/`ArrowDown` y `Home`/`End` desplazan el foco; `Escape` cierra los paneles colapsables y devuelve el foco al trigger.
 - Un solo panel de tarea puede estar abierto. Los paneles utilizan el ancho común de 384 px cuando hay espacio y pasan a overlay o sheet antes de comprimir el resultado.
