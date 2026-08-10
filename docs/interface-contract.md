@@ -1,6 +1,6 @@
 # Contrato común de interfaz científica
 
-Estado: normativo. Versión: 2.4. Aplicable a las ocho herramientas científicas publicadas por Jorge Parra.
+Estado: normativo. Versión: 2.5. Aplicable a las ocho herramientas científicas publicadas por Jorge Parra.
 
 ## Fuente de verdad
 
@@ -73,12 +73,12 @@ El estado de guardado del proyecto es independiente del estado del resultado cie
 - Breakpoints Carbon: `sm` 320 px, `md` 672 px, `lg` 1056 px, `xlg` 1312 px y `max` 1584 px.
 - Escritorio: navegación lateral, panel de 360–400 px y área científica flexible.
 - Tablet: panel a ancho completo o superpuesto antes de comprimir el resultado.
-- Móvil: navegación inferior, objetivos táctiles preferentemente de 44 px y mini-preview de 120–160 px cuando el panel oculta el canvas.
+- Móvil: navegación inferior, objetivos táctiles preferentemente de 44 px y una sola capa de trabajo visible. Un panel abierto sustituye temporalmente al canvas; no se crean mini-previews ni minimapas.
 - Se comprueba 320, 375, 414, 768, 1024 y 1440 px.
 - No se permite overflow horizontal de página, acciones esenciales ocultas ni etiquetas interactivas partidas en dos líneas.
 - `html` y `body` usan `overflow-x: clip`; un canvas fijo puede documentar una excepción siempre que no oculte controles alcanzables.
 
-Los diagramas ofrecen `Fit width`, `Fit selection` y `Fit all`. Los diagramas complejos incorporan minimapa y un zoom mínimo legible.
+Los diagramas ofrecen `Fit width`, `Fit selection` y `Fit all`, junto con un zoom mínimo legible. No incorporan minimapas ni vistas duplicadas del canvas.
 
 ## Interacción y accesibilidad
 
