@@ -1,5 +1,7 @@
 # Auditoría profunda de conformidad de las ocho interfaces
 
+> Documento histórico de la inspección realizada el 9 de agosto de 2026. El contrato normativo vigente prevalece sobre sus recomendaciones. En particular, la propuesta de mini-preview quedó anulada: ninguna aplicación debe mostrar mini-preview ni minimapa como sustituto del lienzo.
+
 Fecha: 9 de agosto de 2026
 
 Referencia normativa: [`interface-contract.md`](./interface-contract.md)

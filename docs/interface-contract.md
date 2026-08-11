@@ -1,6 +1,6 @@
 # Contrato común de interfaz científica
 
-Estado: normativo. Versión: 2.5. Aplicable a las ocho herramientas científicas publicadas por Jorge Parra.
+Estado: normativo. Versión: 2.6. Aplicable a las ocho herramientas científicas publicadas por Jorge Parra.
 
 ## Fuente de verdad
 
@@ -51,6 +51,20 @@ La cabecera compartida se implementa con `ScientificHeader` y compone `Header`, 
 El panel de tarea se implementa con `ScientificTaskPanel` sobre un `Layer` Carbon. Su cabecera mide 72 px, usa 16 px de separación, y el cuerpo es el único contenedor con scroll. En escritorio ocupa entre 360 y 384 px; en tablet o móvil utiliza el ancho disponible. Las aplicaciones solo declaran su posición y contenido, sin redefinir superficie, tipografía, padding, borde o scroll. El lienzo o resultado principal usa `scientific-stage`; una barra heredada que todavía no pueda adoptar `ScientificStatusBar` usa `scientific-status-surface` para compartir superficie y geometría.
 
 Los inspectores modales componen `ComposedModal`, `ModalHeader` y `ModalBody`, y los estados científicos utilizan `IconIndicator`. Los temas se aplican mediante `GlobalTheme` o `Theme`; el CSS compartido no detecta temas mediante clases internas.
+
+## Composición y comportamiento compartidos
+
+La raíz React utiliza `ScientificUiProvider`. El provider aplica el tema Carbon también a portales, registra una única política de atajos y monta una única superficie de notificaciones. Las aplicaciones no crean listeners globales paralelos para comandos ya registrados.
+
+- `ScientificCommandBar` decide qué acciones permanecen visibles y cuáles pasan al overflow según prioridad y espacio disponible.
+- `ScientificRunControl` presenta iniciar, pausar, reanudar, detener, progreso y anuncio accesible; el solver y su cancelación permanecen locales.
+- `ScientificPanelSection`, `ScientificParameterGroup`, `ScientificFieldRow` y `ScientificPanelFooter` definen jerarquía, ritmo y acciones de los paneles.
+- `ScientificResultsLayout`, `ScientificResultsToolbar`, `ScientificMetricGrid` y `ScientificLegend` definen la composición de resultados; canvas, Plotly, React Flow y datos científicos permanecen locales.
+- `ScientificViewportToolbar` agrupa zoom, `Fit width`, `Fit selection`, `Fit all` y reset mediante iconos oficiales de Carbon. No introduce minimapas ni mini-previews.
+- `ScientificProjectActions` y `ExportReceipt` normalizan importación, exportación, copia de enlace y confirmación de archivos.
+- `ScientificStatusBar` es el footer del workbench. `embedded` se reserva para adaptadores heredados cuyo stage ya descuenta la navegación responsive; no es una variante visual de producto.
+
+Las acciones con atajo se registran en el provider y aparecen automáticamente en `Help`. `Mod+Enter` ejecuta la acción científica principal, `Escape` cancela o cierra el contexto activo y `?` abre la ayuda. Si dos acciones reclaman el mismo atajo, prevalece la de mayor prioridad documentada.
 
 ## Estados científicos
 
