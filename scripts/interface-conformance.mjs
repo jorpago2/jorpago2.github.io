@@ -25,7 +25,11 @@ try {
     for (const width of widths) {
       const page = await browser.newPage({ viewport: { width, height: width < 600 ? 844 : 900 }, reducedMotion: "reduce" });
       const consoleErrors = [];
+      const resourceErrors = [];
       page.on("console", (message) => { if (message.type() === "error") consoleErrors.push(message.text()); });
+      page.on("response", (resourceResponse) => {
+        if (resourceResponse.status() >= 400) resourceErrors.push(`${resourceResponse.status()} ${resourceResponse.url()}`);
+      });
       const response = await page.goto(url, { waitUntil: "networkidle", timeout: 60_000 });
       const checks = await page.evaluate(() => {
         const documentWidth = document.documentElement.scrollWidth;
@@ -149,7 +153,8 @@ try {
       if (checks.panelWidth !== null && width <= 414 && checks.panelWidth < checks.viewportWidth - 2) failures.push(`mobile panel width ${checks.panelWidth}px`);
       if (checks.undersizedTouchTargetDetails.length > 0) failures.push(`${checks.undersizedTouchTargetDetails.length} touch targets smaller than 44px`);
       if (consoleErrors.length) failures.push(`${consoleErrors.length} console errors`);
-      results.push({ application, url, width, checks, consoleErrors, failures });
+      if (resourceErrors.length) failures.push(`${resourceErrors.length} resource errors`);
+      results.push({ application, url, width, checks, consoleErrors, resourceErrors, failures });
       await page.close();
     }
   }
