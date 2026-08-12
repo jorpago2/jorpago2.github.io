@@ -1,6 +1,6 @@
 # Contrato común de interfaz científica
 
-Estado: normativo. Versión: 2.6. Aplicable a las ocho herramientas científicas publicadas por Jorge Parra.
+Estado: normativo. Versión: 2.7. Aplicable a las ocho herramientas científicas publicadas por Jorge Parra.
 
 ## Fuente de verdad
 
@@ -11,7 +11,7 @@ Si un `design.md` local contradice este contrato en tipografía, tema, geometrí
 ## Sistema visual
 
 - Carbon Design System `g10` es la única base para el chrome de aplicación.
-- IBM Plex Sans se usa en la interfaz e IBM Plex Mono en valores, unidades, coordenadas e identificadores.
+- IBM Plex Sans se usa en toda la interfaz, incluidos valores, unidades, coordenadas e identificadores. Los números tabulares usan `font-variant-numeric: tabular-nums` sin cambiar de familia tipográfica.
 - Superficies y controles siguen la geometría cuadrada de Carbon. No se crean sistemas paralelos de radios, sombras, gradientes o píldoras.
 - Los colores de interfaz proceden de tokens semánticos `--cds-*`.
 - No existe un acento de aplicación por herramienta. El azul Carbon identifica acciones y selección.
@@ -63,6 +63,10 @@ La raíz React utiliza `ScientificUiProvider`. El provider aplica el tema Carbon
 - `ScientificViewportToolbar` agrupa zoom, `Fit width`, `Fit selection`, `Fit all` y reset mediante iconos oficiales de Carbon. No introduce minimapas ni mini-previews.
 - `ScientificProjectActions` y `ExportReceipt` normalizan importación, exportación, copia de enlace y confirmación de archivos.
 - `ScientificStatusBar` es el footer del workbench. `embedded` se reserva para adaptadores heredados cuyo stage ya descuenta la navegación responsive; no es una variante visual de producto.
+- `ScientificPreflightSummary` resume entradas, discretización, estabilidad y condiciones que pueden bloquear la ejecución.
+- `ScientificValidationSummary` presenta evidencia de convergencia, conservación, consistencia física y límites; cada check conserva su propio estado.
+- `ScientificModelScope` declara modelo, hipótesis y límites de interpretación sin esconderlos en ayuda secundaria.
+- `ScientificResultProvenance` y `ScientificReproducibilityManifest` relacionan el resultado con entradas, versión del solver, malla y momento de cálculo.
 
 Las acciones con atajo se registran en el provider y aparecen automáticamente en `Help`. `Mod+Enter` ejecuta la acción científica principal, `Escape` cancela o cierra el contexto activo y `?` abre la ayuda. Si dos acciones reclaman el mismo atajo, prevalece la de mayor prioridad documentada.
 
@@ -82,6 +86,22 @@ El vocabulario común es:
 | `failed` | La operación falló y se explica una acción de recuperación. |
 
 El estado de guardado del proyecto es independiente del estado del resultado científico.
+
+También son independientes entre sí: validez de entradas, ejecución, actualidad del resultado, convergencia numérica, validación científica y guardado. Un solver que termina o converge produce como máximo un resultado `up-to-date`; solo pasa a `validated` cuando las comprobaciones aplicables se han ejecutado y superado. La interfaz nunca usa “saved”, “complete”, “converged” o “up to date” como sinónimos de validación.
+
+## Flujo científico
+
+Toda herramienta debe permitir reconocer, aunque no necesariamente como siete entradas de navegación, este orden lógico:
+
+1. **Problem / Input:** datos, ejemplo o pregunta física.
+2. **Model:** geometría, materiales, fuentes, hipótesis y alcance.
+3. **Numerical preflight:** unidades, rangos, malla, estabilidad, compatibilidad y coste.
+4. **Execution:** acción principal, progreso, pausa o cancelación.
+5. **Results / Measure:** observable principal y vistas científicas relacionadas.
+6. **Validation:** residuos, conservación, convergencia, referencias y advertencias.
+7. **Reproducibility:** configuración, versiones, procedencia y exportación.
+
+La navegación visible agrupa estas fases según el dominio y evita menús redundantes. La ayuda teórica extensa no ocupa el flujo principal; las advertencias que cambian la interpretación sí permanecen junto al resultado.
 
 ## Responsive
 
