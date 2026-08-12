@@ -1,7 +1,7 @@
 import { chromium } from "playwright";
 import { writeFile } from "node:fs/promises";
 
-const applications = [
+const allApplications = [
   ["FDTD", "https://jorpago2.github.io/fdtd-2d-simulator/"],
   ["Drift–Diffusion", "https://jorpago2.github.io/drift-difussion-simulator/"],
   ["RF", "https://jorpago2.github.io/rf-web-simulator/"],
@@ -11,7 +11,11 @@ const applications = [
   ["Reflectometry", "https://jorpago2.github.io/reflectometry/"],
   ["SetupSketch", "https://jorpago2.github.io/setupsketch/"],
 ];
-const widths = [320, 375, 414, 768, 1024, 1440];
+const requestedApplications = new Set((process.env.INTERFACE_APPLICATIONS ?? "").split(",").map((value) => value.trim().toLowerCase()).filter(Boolean));
+const applications = requestedApplications.size
+  ? allApplications.filter(([name]) => requestedApplications.has(name.toLowerCase()))
+  : allApplications;
+const widths = (process.env.INTERFACE_WIDTHS ?? "320,375,414,768,1024,1440").split(",").map(Number).filter(Number.isFinite);
 const browser = await chromium.launch();
 const results = [];
 
@@ -44,22 +48,48 @@ try {
           const style = getComputedStyle(element);
           return rect.width > 0 && rect.height > 0 && style.display !== "none" && style.visibility !== "hidden";
         };
+        const visibleContentRect = (element) => {
+          if (!visible(element)) return null;
+          const rects = [...element.children].filter(visible).map((child) => child.getBoundingClientRect());
+          if (!rects.length) return element.getBoundingClientRect();
+          return {
+            left: Math.min(...rects.map((rect) => rect.left)),
+            right: Math.max(...rects.map((rect) => rect.right)),
+          };
+        };
         const header = document.querySelector(".scientific-header");
         const rail = document.querySelector(".scientific-tool-rail");
+        const brand = document.querySelector(".scientific-header__brand");
         const context = document.querySelector(".scientific-header__context");
+        const actions = document.querySelector(".scientific-header__actions");
         const taskPanel = [...document.querySelectorAll(".scientific-task-panel")].find(visible);
         const headerRect = header?.getBoundingClientRect();
         const railRect = rail?.getBoundingClientRect();
+        const brandRect = visible(brand) ? brand.getBoundingClientRect() : null;
         const contextRect = visible(context) ? context.getBoundingClientRect() : null;
+        const actionsRect = visible(actions) ? actions.getBoundingClientRect() : null;
+        const brandContentRect = visibleContentRect(brand);
+        const contextContentRect = visibleContentRect(context);
+        const actionsContentRect = visibleContentRect(actions);
         const panelRect = taskPanel?.getBoundingClientRect();
         const activeRailItems = rail ? rail.querySelectorAll('[aria-current="page"]').length : 0;
-        const undersizedTouchTargets = window.innerWidth <= 414
+        const undersizedTouchTargetDetails = window.innerWidth <= 414
           ? [...document.querySelectorAll(".scientific-header button, .scientific-header a, .scientific-tool-rail button, .scientific-task-panel__header button")].filter((element) => {
               if (!visible(element) || element.closest('[aria-hidden="true"]')) return false;
+              if (element.classList.contains("cds--skip-to-content") && !element.matches(":focus")) return false;
               const rect = element.getBoundingClientRect();
               return rect.width < 44 || rect.height < 44;
-            }).length
-          : 0;
+            }).map((element) => {
+              const rect = element.getBoundingClientRect();
+              return {
+                element: element.tagName.toLowerCase(),
+                name: element.getAttribute("aria-label") || element.textContent?.trim() || "unnamed",
+                className: element.className,
+                width: rect.width,
+                height: rect.height,
+              };
+            })
+          : [];
         return {
           overflow: Math.max(0, documentWidth - viewportWidth),
           viewportWidth,
@@ -73,9 +103,31 @@ try {
           railWidth: railRect?.width ?? 0,
           railHeight: railRect?.height ?? 0,
           activeRailItems,
-          contextCenterOffset: contextRect ? Math.abs(contextRect.left + contextRect.width / 2 - window.innerWidth / 2) : 0,
+          contextOverlapsBrand: Boolean(contextContentRect && brandContentRect && contextContentRect.left < brandContentRect.right - 1),
+          contextOverlapsActions: Boolean(contextContentRect && actionsContentRect && contextContentRect.right > actionsContentRect.left + 1),
+          headerRects: {
+            brand: brandRect ? { left: brandRect.left, right: brandRect.right, width: brandRect.width } : null,
+            context: contextRect ? { left: contextRect.left, right: contextRect.right, width: contextRect.width } : null,
+            actions: actionsRect ? { left: actionsRect.left, right: actionsRect.right, width: actionsRect.width } : null,
+            brandContent: brandContentRect,
+            contextContent: contextContentRect,
+            actionsContent: actionsContentRect,
+            contextChildren: context ? [...context.children].filter(visible).map((child) => {
+              const rect = child.getBoundingClientRect();
+              const style = getComputedStyle(child);
+              return {
+                className: child.className,
+                left: rect.left,
+                right: rect.right,
+                width: rect.width,
+                flex: style.flex,
+                minWidth: style.minWidth,
+                maxWidth: style.maxWidth,
+              };
+            }) : [],
+          },
           panelWidth: panelRect?.width ?? null,
-          undersizedTouchTargets,
+          undersizedTouchTargetDetails,
         };
       });
       const failures = [];
@@ -91,10 +143,11 @@ try {
       if (width >= 1056 && Math.abs(checks.railWidth - 256) > 1) failures.push(`desktop rail width ${checks.railWidth}px`);
       if (width < 1056 && Math.abs(checks.railHeight - 56) > 1) failures.push(`responsive rail height ${checks.railHeight}px`);
       if (width < 1056 && Math.abs(checks.railWidth - checks.viewportWidth) > 1) failures.push(`responsive rail width ${checks.railWidth}px`);
-      if (checks.contextCenterOffset > 8) failures.push(`header context offset ${checks.contextCenterOffset}px`);
+      if (checks.contextOverlapsBrand) failures.push("header context overlaps product identity");
+      if (checks.contextOverlapsActions) failures.push("header context overlaps actions");
       if (checks.panelWidth !== null && width >= 1056 && (checks.panelWidth < 360 || checks.panelWidth > 400)) failures.push(`desktop panel width ${checks.panelWidth}px`);
       if (checks.panelWidth !== null && width <= 414 && checks.panelWidth < checks.viewportWidth - 2) failures.push(`mobile panel width ${checks.panelWidth}px`);
-      if (checks.undersizedTouchTargets > 0) failures.push(`${checks.undersizedTouchTargets} touch targets smaller than 44px`);
+      if (checks.undersizedTouchTargetDetails.length > 0) failures.push(`${checks.undersizedTouchTargetDetails.length} touch targets smaller than 44px`);
       if (consoleErrors.length) failures.push(`${consoleErrors.length} console errors`);
       results.push({ application, url, width, checks, consoleErrors, failures });
       await page.close();
