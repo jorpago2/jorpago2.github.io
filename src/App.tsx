@@ -46,6 +46,17 @@ const simulators = [
     repository: "https://github.com/jorpago2/waveguide-mode-solver",
     theme: "waveguide",
   },
+  {
+    number: "05",
+    title: "Optothermal Simulator",
+    field: "Axisymmetric heat flow · Optical absorption",
+    description:
+      "Model pulsed optical heating in thin films with a Rust/WASM implicit thermal solver, temperature-dependent material response, and explicit numerical checks.",
+    detail: "React · TypeScript · Rust/WASM",
+    href: "https://jorpago2.github.io/optothermal_simulator/",
+    repository: "https://github.com/jorpago2/optothermal_simulator",
+    theme: "optothermal",
+  },
 ] as const;
 
 export default function Home() {

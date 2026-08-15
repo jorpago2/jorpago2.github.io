@@ -10,6 +10,9 @@ const allApplications = [
   ["SpinCoatSim", "https://jorpago2.github.io/spincoatsim/"],
   ["Reflectometry", "https://jorpago2.github.io/reflectometry/"],
   ["SetupSketch", "https://jorpago2.github.io/setupsketch/"],
+  ["Optothermal", "https://jorpago2.github.io/optothermal_simulator/"],
+  ["Portal", "https://jorpago2.github.io/"],
+  ["Web", "https://www.uv.es/jorpago2/"],
 ];
 const requestedApplications = new Set((process.env.INTERFACE_APPLICATIONS ?? "").split(",").map((value) => value.trim().toLowerCase()).filter(Boolean));
 const applications = requestedApplications.size
