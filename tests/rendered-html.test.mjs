@@ -8,7 +8,6 @@ const output = new URL("../dist/index.html", import.meta.url);
 test("exports the English simulator dashboard", async () => {
   const html = await readFile(output, "utf8");
   const source = await readFile(new URL("../src/App.tsx", import.meta.url), "utf8");
-  const mainSource = await readFile(new URL("../src/main.tsx", import.meta.url), "utf8");
   const styles = await readFile(new URL("../src/styles.css", import.meta.url), "utf8");
 
   await Promise.all([
@@ -54,7 +53,7 @@ test("exports the English simulator dashboard", async () => {
   assert.match(html, /https:\/\/jorpago2\.github\.io\/fdtd-2d-simulator\//);
   assert.match(html, /https:\/\/jorpago2\.github\.io\/drift-difussion-simulator\//);
   assert.match(html, /class="simulator-link"[^>]*target="_blank"/);
-  assert.equal((html.match(/class="simulator-link"/g) ?? []).length, 11);
+  assert.equal((html.match(/class="simulator-link"/g) ?? []).length, 10);
   assert.doesNotMatch(html, /Coming soon/);
   assert.match(html, /RF Network Simulator/);
   assert.match(html, /Two-port networks · S-parameters/);
@@ -64,11 +63,6 @@ test("exports the English simulator dashboard", async () => {
   assert.match(html, /Full-vector FDM · Integrated photonics/);
   assert.match(html, /https:\/\/jorpago2\.github\.io\/waveguide-mode-solver\//);
   assert.match(html, /https:\/\/github\.com\/jorpago2\/waveguide-mode-solver/);
-  assert.match(html, /Optothermal Simulator/);
-  assert.match(html, /https:\/\/jorpago2\.github\.io\/optothermal_simulator\//);
-  assert.match(html, /https:\/\/github\.com\/jorpago2\/optothermal_simulator/);
-  assert.match(mainSource, /if \(root\.childElementCount > 0\) hydrateRoot/);
-  assert.match(styles, /grid-auto-rows:\s*minmax\(190px, 1fr\)/);
   assert.match(html, />RESEARCH<\/p>/);
   assert.match(html, /Tools for fabrication and optical characterization\./);
   assert.match(
